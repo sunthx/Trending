@@ -1,1 +1,1 @@
-##【JsBox】Gayhub “打卡”记录
+【JsBox】Gayhub “打卡”记录
