@@ -1,77 +1,63 @@
-function render(data) {
-  var totalCount = data.length
-  $ui.render({
-    views: [
-      {
-        type: "canvas",
-        layout: $layout.fill,
-        events: {
-          draw: function (view, ctx) {
-            var column = totalCount / 7
-            var row = 7
-            var start_x = 0
-            var start_y = 20
-            var count = 0
+var file = $file.read("setting.conf")
+var github_user_name = (typeof file == "undefined") ? "sunthx" : file.string
+var device_width = $device.info.screen.width
 
-            var current_x = 0
-            var current_y = 0
-
-            var margin = 5
-            var item_margin = 1
-
-            var view_width = view.frame.width
-            
-            var rect_width = (view_width - (column - 1) * item_margin - margin * 2) / column
-            var rect_height = rect_width
-
-            current_x = margin + start_x
-            for (let colIndex = 0; colIndex < column; colIndex++) {
-              current_y = margin + start_y
-              for (let rowIndex = 0; rowIndex < row; rowIndex++) {
-                if(count == totalCount){
-                  break
-                }
-
-                var color = data[count]
-                var rect = { x: current_x, y: current_y, width: rect_width, height: rect_height }
-                ctx.fillColor = $color("'"+color+"'")
-
-                ctx.fillRect(rect)
-                ctx.addRect(rect)
-                
-                current_y += rect_height + item_margin
-                count++
-              }
-              current_x += rect_width + item_margin
-            }
-          }
-        }
-      }
-    ]
+function saveSetting(value) {
+  $file.write({
+    data: $data({ string: value }),
+    path: "setting.conf"
   })
 }
 
-function getDataByUserName() {
-  $ui.loading(true)
-  $http.get({
-    url:'https://github.com/users/sunthx/contributions?to=2018-09-25',
-    handler: function (resp) {
-      $ui.loading(false)
-
-      var data = resp.data
-      var reg = new RegExp('#[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]','g')
-      var rects = []
-
-      while ((result = reg.exec(data)) != null) {
-        rects.push(result.toString())
-      }
-
-      render(rects)
+$ui.render({
+  type: "view",
+  props: {
+    bgcolor: $color("#F9F9F9"),
+    borderWidth: 1,
+    borderColor: $color("#C1C1C0")
+  },
+  layout: function (make, view) {
+    make.top.equalTo(view.super).offset(20)
+    make.centerX.equalTo(view.super)
+  },
+  views: [{
+    type: "label",
+    props: {
+      text: $l10n("SET_GITHUB_NAME"),
+      font: $font("default", 32)
+    },
+    layout: function (make, view) {
+      make.top.equalTo(view.super).offset(10)
+      make.left.equalTo(view.super).offset(10)
     }
-  })
-}
-
-
-module.exports = {
-  render: getDataByUserName()
-}
+  }, {
+    type: "input",
+    props: {
+      id: "text",
+      type: $kbType.default,
+      text: github_user_name,
+      font: $font("default", 30)
+    },
+    layout: function (make, view) {
+      make.top.equalTo(view.super).offset(60)
+      make.left.equalTo(view.super).offset(10)
+      make.size.equalTo($size(device_width - 20, 60))
+    }
+  }, {
+    type: "button",
+    props: {
+      title: $l10n("SAVE")
+    },
+    layout: function (make, view) {
+      make.top.equalTo(view.super).offset(130)
+      make.left.equalTo(view.super).offset(10)
+      make.size.equalTo($size(device_width - 20, 60))
+    },
+    events: {
+      tapped: function() {
+        saveSetting($("text").text)
+        $app.close()
+      }
+    }
+  }]
+})
