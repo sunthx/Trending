@@ -1,6 +1,6 @@
 var file = $file.read("setting.conf")
-var github_user_name = (typeof file == "undefined") ? "sunthx" : file.string
-var days = "180"
+var github_user_name = (typeof file == "undefined") ? "sunthx" : file.string.split(',')[0]
+var days = (typeof file == "undefined") ? "180" : file.string.split(',')[1]
 var device_width = $device.info.screen.width
 
 function saveSetting(value) {
@@ -12,11 +12,6 @@ function saveSetting(value) {
 
 $ui.render({
   type: "view",
-  props: {
-    bgcolor: $color("#F9F9F9"),
-    borderWidth: 1,
-    borderColor: $color("#C1C1C0")
-  },
   layout: function (make, view) {
     make.top.equalTo(view.super).offset(20)
     make.centerX.equalTo(view.super)
@@ -44,7 +39,7 @@ $ui.render({
       make.left.equalTo(view.super).offset(10)
       make.size.equalTo($size(device_width - 20, 60))
     }
-  },{
+  }, {
     type: "label",
     props: {
       text: $l10n("SET_DAYS"),
@@ -54,7 +49,7 @@ $ui.render({
       make.top.equalTo(view.super).offset(150)
       make.left.equalTo(view.super).offset(10)
     }
-  },{
+  }, {
     type: "input",
     props: {
       id: "txt_days",
@@ -67,7 +62,7 @@ $ui.render({
       make.left.equalTo(view.super).offset(10)
       make.size.equalTo($size(device_width - 20, 60))
     }
-  },{
+  }, {
     type: "button",
     props: {
       title: $l10n("SAVE")
@@ -78,19 +73,19 @@ $ui.render({
       make.size.equalTo($size(device_width - 20, 60))
     },
     events: {
-      tapped: function() {
+      tapped: function () {
 
         var days = $("txt_days").text
-        if(days == ""){
+        if (days == "") {
           days = "180"
         }
 
         var userName = $("txt_name").text
-        if(userName == ""){
+        if (userName == "") {
           userName = "sunthx"
         }
 
-        var config = userName +","+days
+        var config = userName + "," + days
         saveSetting(config)
         $app.close()
       }

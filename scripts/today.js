@@ -1,8 +1,22 @@
 var file = $file.read("setting.conf")
-var github_user_name = (typeof file == "undefined") ? "sunthx" : file.string
+var github_user_name = (typeof file == "undefined") ? "sunthx" : file.string.split(',')[0]
+var days = (typeof file == "undefined") ? "180" : file.string.split(',')[1]
+var rect_max_width_height = 12
+function render(all_data) {
+    var totalCount = all_data.length
+    var showCount = parseInt(days)
+    var data = all_data
 
-function render(data) {
-    var totalCount = data.length
+    if(showCount > totalCount){
+        showCount = totalCount
+    }
+
+    if(showCount < totalCount){
+        data = all_data.slice(totalCount - showCount)
+    }
+
+    console.log(data.length);
+
     $ui.render({
         views: [
             {
@@ -10,32 +24,35 @@ function render(data) {
                 layout: $layout.fill,
                 events: {
                     draw: function (view, ctx) {
-                        var column = totalCount / 7
+                        var column = showCount / 7
                         var row = 7
                         var start_x = 0
-                        var start_y = 20
+                        var start_y = 0
                         var count = 0
 
                         var current_x = 0
                         var current_y = 0
 
-                        var margin = 5
+                        var margin = 2
                         var item_margin = 1
 
                         var view_width = view.frame.width
-
                         var rect_width = (view_width - (column - 1) * item_margin - margin * 2) / column
-                        var rect_height = rect_width
+                        if(rect_width > rect_max_width_height){
+                            rect_width = rect_max_width_height
+                        }
 
+                        var rect_height = rect_width
                         current_x = margin + start_x
                         for (let colIndex = 0; colIndex < column; colIndex++) {
                             current_y = margin + start_y
                             for (let rowIndex = 0; rowIndex < row; rowIndex++) {
-                                if (count == totalCount) {
+                                if (count == showCount) {
                                     break
                                 }
 
                                 var rect = { x: current_x, y: current_y, width: rect_width, height: rect_height }
+
                                 ctx.fillColor = $color(data[count])
                                 ctx.fillRect(rect)
                                 ctx.addRect(rect)
