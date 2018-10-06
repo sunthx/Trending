@@ -2,6 +2,7 @@ var file = $file.read("setting.conf")
 var github_user_name = (typeof file == "undefined") ? "sunthx" : file.string.split(',')[0]
 var days = (typeof file == "undefined") ? "180" : file.string.split(',')[1]
 var rect_max_width_height = 12
+var contribution_request_url = "http://127.0.0.1:8080/"
 function render(all_data) {
     var totalCount = all_data.length
     var showCount = parseInt(days)
@@ -71,20 +72,18 @@ function render(all_data) {
 
 function renderContriByUserName(userName) {
     $ui.loading(true)
-    var req_url = 'https://github.com/users/' + userName + '/contributions?to=' + (new Date()).toLocaleDateString().replace('/', '-').replace('/', '-')
+    var req_url = contribution_request_url + userName
     $http.get({
         url: req_url,
         handler: function (resp) {
             $ui.loading(false)
-            var rect_pattern = '<rect .*?/>'
-            var color_pattern = '#[0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]'
-
+            
             var data = resp.data
-            var reg = new RegExp(rect_pattern, 'g')
+            data_array = JSON.parse(data)
             var rects = []
-
-            while ((result = reg.exec(data)) != null) {
-                rects.push(result.toString().match(color_pattern))
+            for (let index = 0; index < data_array.length; index++) {
+                const contribution = data_array[index];
+                rects.push(contribution.color)
             }
 
             render(rects)
