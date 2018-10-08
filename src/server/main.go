@@ -15,6 +15,8 @@ import (
 func main() {
 	fmt.Println(":8080")
 	http.HandleFunc("/contributions",contributionAPIHandle)
+	http.HandleFunc("/trending",trendingAPIHandle)
+
 	http.ListenAndServe(":8080",nil)
 }
 
@@ -30,6 +32,39 @@ func contributionAPIHandle(writer http.ResponseWriter,request *http.Request) {
 
 	writer.Header().Set("Content-Type","application/json; charset=utf-8")
 	fmt.Fprint(writer,string(result))
+}
+
+func trendingAPIHandle(writer http.ResponseWriter,request *http.Request) {
+	trending,_ := getTrending()
+	result,_ := json.Marshal(trending)
+
+	writer.Header().Set("Content-Type","application/json; charset=utf-8")
+	fmt.Fprint(writer,string(result))
+}
+
+type Trending struct {
+	[]Repository Repositories
+}
+
+type Repository struct {
+	Name		string		`json:"name"`
+	Description	string		`json:"description"`
+	Url			string		`json:"url"`
+	Star		int			`json:"star"`	
+	Fork		int			`json:"fork"`
+	Lang		string		`json:"lang"`
+}
+
+func getTrending() (Trending,error){
+	trendingExp := `<li class="col-12 d-block width-full py-4 border-bottom" [^]*?>[^]*?<\/li>`
+}
+
+func resolveRepositorys(content string) []Repository {
+
+}
+
+func resolveRepositoryTag(tag string) Repository {
+
 }
 
 type Contribution struct {
