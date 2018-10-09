@@ -1,5 +1,3 @@
-var file = $file.read("setting.conf")
-var github_user_name = (typeof file == "undefined") ? "sunthx" : file.string
 var device_width = $device.info.screen.width
 var device_height = $device.info.screen.height
 var trending_request_url = "http://192.168.31.102:8080/trending"
@@ -7,11 +5,11 @@ var trending_request_url = "http://192.168.31.102:8080/trending"
 var header = {
   type: "view",
   layout: function (make, view) {
-    make.height.equalTo(110)
+    make.height.equalTo(125)
     make.width.equalTo(view.super)
   },
   props: {
-    height: 110,
+    height: 125,
     bgcolor: $color('#f8f8f8')
   },
   views: [{
@@ -23,7 +21,7 @@ var header = {
     },
     layout: function (make, view) {
       make.width.equalTo(view.super)
-      make.top.equalTo(20)
+      make.top.equalTo(30)
     }
   },
   {
@@ -37,7 +35,7 @@ var header = {
     },
     layout: function (make, view) {
       make.width.equalTo(300)
-      make.top.equalTo(50)
+      make.top.equalTo(60)
       make.centerX.equalTo(view.super)
     }
   }]
@@ -136,15 +134,23 @@ var repo_list = {
     separatorHidden: true,
     rowHeight: 130,
     template: repo_list_item,
-    selectable: false
+    selectable: true
   },
   layout: function (make, view) {
-    console.log(123)
-    make.top.equalTo(120)
-    make.height.equalTo(device_height - 130)
+    make.top.equalTo(135)
+    make.height.equalTo(device_height - 150)
     make.width.equalTo(view.super)
+  },
+  events:{
+    didSelect: function (tableView,indexPath) {
+      var data = tableView.object(indexPath)
+      $app.openBrowser({
+        url:data.url
+      })
+    }
   }
 }
+
 
 function render(data) {
   repo_list.props.data = data
@@ -174,7 +180,8 @@ function getTrendingData() {
           lang: { text: repo_item.lang },
           description: { text: repo_item.description.replace(/<g-emoji [\s\S]*?>|<\/g-emoji>|<a[\s\S]*?>|<\/a>/g,"") },
           star: { title: repo_item.star },
-          fork: { title: repo_item.fork }
+          fork: { title: repo_item.fork },
+          url:repo_item.url 
         }
 
         data_source.push(data_item)
@@ -186,64 +193,23 @@ function getTrendingData() {
 }
 
 getTrendingData()
-// setting page
-
-// function saveSetting(value) {
-//   $file.write({
-//     data: $data({ string: value }),
-//     path: "setting.conf"
-//   })
-// }
 
 // $ui.render({
-//   type: "view",
-//   layout: function (make, view) {
-//     make.top.equalTo(view.super).offset(20)
-//     make.centerX.equalTo(view.super)
-//   },
-//   views: [{
-//     type: "label",
-//     props: {
-//       text: $l10n("SET_GITHUB_NAME"),
-//       font: $font("default", 32)
-//     },
-//     layout: function (make, view) {
-//       make.top.equalTo(view.super).offset(10)
-//       make.left.equalTo(view.super).offset(10)
-//     }
-//   }, {
-//     type: "input",
-//     props: {
-//       id: "txt_name",
-//       type: $kbType.default,
-//       text: github_user_name,
-//       font: $font("default", 30)
-//     },
-//     layout: function (make, view) {
-//       make.top.equalTo(view.super).offset(60)
-//       make.left.equalTo(view.super).offset(10)
-//       make.size.equalTo($size(widget_width - 20, 60))
-//     }
-//   }, {
-//     type: "button",
-//     props: {
-//       title: $l10n("SAVE")
-//     },
-//     layout: function (make, view) {
-//       make.top.equalTo(view.super).offset(150)
-//       make.left.equalTo(view.super).offset(10)
-//       make.size.equalTo($size(widget_width - 20, 60))
-//     },
-//     events: {
-//       tapped: function () {
-//         var userName = $("txt_name").text
-//         if (userName == "") {
-//           userName = "sunthx"
+//   views: [
+//     {
+//       type: "menu",
+//       layout: function(make,view) {
+//         make.left.right.equalTo(0)
+//         make.bottom.equalTo(view.super.bottom).offset(2)
+//         make.height.equalTo(82)
+//       },
+//       events: {
+//         changed: function(sender) {
 //         }
+//       },
+//       views: [{
 
-//         saveSetting(userName)
-//         $app.close()
-//       }
+//       }]
 //     }
-//   }]
+//   ]
 // })
