@@ -1,7 +1,8 @@
 var file = $file.read("setting.conf")
 var github_user_name = (typeof file == "undefined") ? "sunthx" : file.string
 var device_width = $device.info.screen.width
-var trending_request_url = "http://192.168.1.161:8080/trending"
+var device_height = $device.info.screen.height
+var trending_request_url = "http://192.168.31.102:8080/trending"
 
 var header = {
   type: "view",
@@ -133,47 +134,58 @@ var repo_list = {
   type: "list",
   props: {
     separatorHidden: true,
-    rowHeight: 90,
+    rowHeight: 130,
     template: repo_list_item,
-    selectable: false,
-    data: [
-      {
-        name: {
-          title: "sunthx/jsbox-github-contri"
-        },
-
-        description: {
-          text: "description description description description description description"
-        },
-
-        star: {
-          title: "9999999"
-        },
-
-        fork: {
-          title: "9999999"
-        },
-
-        lang: {
-          text: "Javascript"
-        }
-      }
-    ]
+    selectable: false
   },
   layout: function (make, view) {
+    console.log(123)
     make.top.equalTo(120)
-    make.height.equalTo(view.super)
+    make.height.equalTo(device_height - 130)
     make.width.equalTo(view.super)
   }
 }
 
-var main_view = {
-  type: "view",
-  views: [header, repo_list]
+function render(data) {
+  repo_list.props.data = data
+  var main_view = {
+    props:{
+      navBarHidden: true,
+      statusBarStyle: 0
+    },
+    views: [header, repo_list]
+  }
+
+  $ui.render(main_view)
 }
 
-$ui.render(main_view)
+function getTrendingData() {
+  $http.get({
+    url: trending_request_url,
+    handler: function (resp) {
+      $ui.loading(false)
+      var data_source = []
+      var data_array = resp.data.Repositories
 
+      for (let index = 0; index < data_array.length; index++) {
+        const repo_item = data_array[index]
+        var data_item = {
+          name: { title: repo_item.name },
+          lang: { text: repo_item.lang },
+          description: { text: repo_item.description.replace(/<g-emoji [\s\S]*?>|<\/g-emoji>|<a[\s\S]*?>|<\/a>/g,"") },
+          star: { title: repo_item.star },
+          fork: { title: repo_item.fork }
+        }
+
+        data_source.push(data_item)
+      }
+
+      render(data_source)
+    }
+  })
+}
+
+getTrendingData()
 // setting page
 
 // function saveSetting(value) {
