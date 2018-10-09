@@ -1,6 +1,6 @@
 ## [JSBox] Github-Trending
 
-> Power by JSBox
+> Power by JSBox
 
 ![](images/shot1.png)
 
