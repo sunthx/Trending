@@ -10,6 +10,7 @@ import (
 	"github.com/pkg/errors"
 	"regexp"
 	"strconv"
+	"strings"
 )
 
 func main() {
@@ -43,28 +44,122 @@ func trendingAPIHandle(writer http.ResponseWriter,request *http.Request) {
 }
 
 type Trending struct {
-	[]Repository Repositories
+	Repositories []Repository
 }
 
 type Repository struct {
 	Name		string		`json:"name"`
 	Description	string		`json:"description"`
 	Url			string		`json:"url"`
-	Star		int			`json:"star"`	
-	Fork		int			`json:"fork"`
+	Star		string		`json:"star"`
+	Fork		string		`json:"fork"`
 	Lang		string		`json:"lang"`
 }
 
 func getTrending() (Trending,error){
-	trendingExp := `<li class="col-12 d-block width-full py-4 border-bottom" [^]*?>[^]*?<\/li>`
+	requestUrl := "https://github.com/trending"
+	res,err := http.Get(requestUrl)
+	if err != nil {
+		return Trending{},err
+	}
+
+	contentBytes,err := ioutil.ReadAll(res.Body)
+	if err != nil || contentBytes == nil {
+		return Trending{},err
+	}
+
+	htmlContent := string(contentBytes)
+	repositories := resolveRepositories(htmlContent)
+	return Trending{Repositories:repositories},nil
 }
 
-func resolveRepositorys(content string) []Repository {
+func resolveRepositories(content string) []Repository {
+	repositoryItemExp := `<li class="col-12 d-block width-full py-4 border-bottom"[\s\S]*?>[\s\S]*?<\/li>`
 
+	regexp := regexp.MustCompile(repositoryItemExp)
+	match := regexp.FindAll([]byte(content),-1)
+	if match == nil {
+		return nil
+	}
+
+	result := make([]Repository,0)
+	for i := 0; i< len(match);i++  {
+		result = append(result,resolveRepositoryTag(string(match[i])))
+	}
+
+	return result
 }
 
-func resolveRepositoryTag(tag string) Repository {
+func resolveRepositoryTag(content string) Repository {
+	name := stringFormat(getRepositoryName(content))
+	lang := stringFormat(getRepositoryLang(content))
+	desc := stringFormat(getRepositoryDescription(content))
+	star := stringFormat(getRepositoryStar(content))
+	fork := stringFormat(getRepositoryFork(content))
+	url := "https://github.com" + name
 
+	return Repository{Name:name,Description:desc,Lang:lang,Star:star,Fork:fork,Url:url}
+}
+
+func stringFormat(content string) string {
+	content = strings.Replace(content,"\n","",-1)
+	content = strings.TrimSpace(content)
+	return content
+}
+
+func getRepositoryName(content string) string {
+	repositoryItemNameExp := `(?<=<h3>[\s\S]+<a href=").*(?=">)`
+	return findFirstOrDefaultMatch(content,repositoryItemNameExp)
+}
+
+func getRepositoryLang(content string) string {
+	repositoryItemLangExp := `(?<=<span itemprop="programmingLanguage">)[\s\S]+?(?=<\/span>)`
+	return findFirstOrDefaultMatch(content,repositoryItemLangExp)
+}
+
+func getRepositoryDescription(content string) string {
+	repositoryItemDescriptionExp := `(?<=<p class="col-9 d-inline-block text-gray m-0 pr-4">)[\s\S]+?(?=<\/p>)`
+	return findFirstOrDefaultMatch(content,repositoryItemDescriptionExp)
+}
+
+func getRepositoryStar(content string) string {
+	repositoryItemStarTagExp :=`<a class="muted-link d-inline-block mr-3" href="[\s\S]*?\/stargazers">[\s\S]*?<\/a>`
+	starTagContent := findFirstOrDefaultMatch(content,repositoryItemStarTagExp)
+	if starTagContent == ""{
+		return starTagContent
+	}
+
+	repositoryItemStarValueExp :=`<\/svg>([\s\S]*)<\/a>`
+	starValue := findFirstOrDefaultMatch(starTagContent,repositoryItemStarValueExp)
+	return starValue
+}
+
+func getRepositoryFork(content string) string {
+	repositoryItemForkTagExp :=`<a class="muted-link d-inline-block mr-3" href=".*\/network">[\s\S]*?<\/a>`
+	forkTagContent := findFirstOrDefaultMatch(content,repositoryItemForkTagExp)
+	if forkTagContent == ""{
+		return forkTagContent
+	}
+
+	repositoryItemForkValueExp :=`<\/svg>([\s\S]*)<\/a>`
+	forkValue := findFirstOrDefaultMatch(forkTagContent,repositoryItemForkValueExp)
+	return forkValue
+}
+
+
+func findFirstOrDefaultMatch(content string,exp string) string {
+	regexp2 := regexp2.MustCompile(exp,0)
+	match,err := regexp2.FindStringMatch(content)
+	if err != nil || match == nil {
+		return ""
+	}
+
+	groups := match.Groups()
+	if len(groups) > 1 {
+		return groups[1].Capture.String()
+	}
+
+	return match.String()
 }
 
 type Contribution struct {
