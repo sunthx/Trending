@@ -1,6 +1,6 @@
 var device_width = $device.info.screen.width
 var device_height = $device.info.screen.height
-var trending_request_url = "http://192.168.31.102:8080/trending"
+var trending_request_url = "http://192.144.166.24:8090/trending"
 
 var header = {
   type: "view",
