@@ -1,6 +1,6 @@
 var device_width = $device.info.screen.width
 var device_height = $device.info.screen.height
-var trending_request_url = "http://192.144.166.24:8090/trending"
+var trending_request_url = "http://192.168.0.110:8080/trending"
 
 var header = {
   type: "view",
@@ -144,9 +144,19 @@ var repo_list = {
   events:{
     didSelect: function (tableView,indexPath) {
       var data = tableView.object(indexPath)
-      $app.openBrowser({
-        url:data.url
-      })
+      var url = data.url
+      $ui.push({
+        props:{
+          title:data.name
+        },
+        views: [{
+          type: "web",
+          props: {
+            url: url
+          },
+          layout: $layout.fill
+        }]
+      });
     }
   }
 }
