@@ -1,0 +1,1112 @@
+{
+    "1C Enterprise": {
+        "color": "#814CCC"
+    },
+    "ABAP": {
+        "color": "#E8274B"
+    },
+    "ActionScript": {
+        "color": "#882B0F"
+    },
+    "Ada": {
+        "color": "#02f88c"
+    },
+    "Agda": {
+        "color": "#315665"
+    },
+    "AGS Script": {
+        "color": "#B9D9FF"
+    },
+    "Alloy": {
+        "color": "#64C800"
+    },
+    "Alpine Abuild": {
+        "color": "#606173"
+    },
+    "AMPL": {
+        "color": "#E6EFBB"
+    },
+    "AngelScript": {
+        "color": "#C7D7DC"
+    },
+    "ANTLR": {
+        "color": "#9DC3FF"
+    },
+    "Apex": {
+        "color": "#606173"
+    },
+    "API Blueprint": {
+        "color": "#2ACCA8"
+    },
+    "APL": {
+        "color": "#5A8164"
+    },
+    "Apollo Guidance Computer": {
+        "color": "#606173"
+    },
+    "AppleScript": {
+        "color": "#101F1F"
+    },
+    "Arc": {
+        "color": "#aa2afe"
+    },
+    "ASP": {
+        "color": "#6a40fd"
+    },
+    "AspectJ": {
+        "color": "#a957b0"
+    },
+    "Assembly": {
+        "color": "#6E4C13"
+    },
+    "Asymptote": {
+        "color": "#4a0c0c"
+    },
+    "ATS": {
+        "color": "#1ac620"
+    },
+    "Augeas": {
+        "color": "#606173"
+    },
+    "AutoHotkey": {
+        "color": "#6594b9"
+    },
+    "AutoIt": {
+        "color": "#1C3552"
+    },
+    "Awk": {
+        "color": "#606173"
+    },
+    "Ballerina": {
+        "color": "#FF5000"
+    },
+    "Batchfile": {
+        "color": "#C1F12E"
+    },
+    "Befunge": {
+        "color": "#606173"
+    },
+    "Bison": {
+        "color": "#606173"
+    },
+    "BitBake": {
+        "color": "#606173"
+    },
+    "BlitzBasic": {
+        "color": "#606173"
+    },
+    "BlitzMax": {
+        "color": "#cd6400"
+    },
+    "Bluespec": {
+        "color": "#606173"
+    },
+    "Boo": {
+        "color": "#d4bec1"
+    },
+    "Brainfuck": {
+        "color": "#2F2530"
+    },
+    "Brightscript": {
+        "color": "#606173"
+    },
+    "Bro": {
+        "color": "#606173"
+    },
+    "C": {
+        "color": "#555555"
+    },
+    "C#": {
+        "color": "#178600"
+    },
+    "C++": {
+        "color": "#f34b7d"
+    },
+    "C2hs Haskell": {
+        "color": "#606173"
+    },
+    "Cap'n Proto": {
+        "color": "#606173"
+    },
+    "CartoCSS": {
+        "color": "#606173"
+    },
+    "Ceylon": {
+        "color": "#dfa535"
+    },
+    "Chapel": {
+        "color": "#8dc63f"
+    },
+    "Charity": {
+        "color": "#606173"
+    },
+    "ChucK": {
+        "color": "#606173"
+    },
+    "Cirru": {
+        "color": "#ccccff"
+    },
+    "Clarion": {
+        "color": "#db901e"
+    },
+    "Clean": {
+        "color": "#3F85AF"
+    },
+    "Click": {
+        "color": "#E4E6F3"
+    },
+    "CLIPS": {
+        "color": "#606173"
+    },
+    "Clojure": {
+        "color": "#db5855"
+    },
+    "CMake": {
+        "color": "#606173"
+    },
+    "COBOL": {
+        "color": "#606173"
+    },
+    "CoffeeScript": {
+        "color": "#244776"
+    },
+    "ColdFusion": {
+        "color": "#ed2cd6"
+    },
+    "ColdFusion CFC": {
+        "color": "#606173"
+    },
+    "Common Lisp": {
+        "color": "#3fb68b"
+    },
+    "Common Workflow Language": {
+        "color": "#B5314C"
+    },
+    "Component Pascal": {
+        "color": "#B0CE4E"
+    },
+    "Cool": {
+        "color": "#606173"
+    },
+    "Coq": {
+        "color": "#606173"
+    },
+    "Crystal": {
+        "color": "#000100"
+    },
+    "Csound": {
+        "color": "#606173"
+    },
+    "Csound Document": {
+        "color": "#606173"
+    },
+    "Csound Score": {
+        "color": "#606173"
+    },
+    "CSS": {
+        "color": "#563d7c"
+    },
+    "Cuda": {
+        "color": "#3A4E3A"
+    },
+    "CWeb": {
+        "color": "#606173"
+    },
+    "Cycript": {
+        "color": "#606173"
+    },
+    "Cython": {
+        "color": "#606173"
+    },
+    "D": {
+        "color": "#ba595e"
+    },
+    "Dart": {
+        "color": "#00B4AB"
+    },
+    "DataWeave": {
+        "color": "#003a52"
+    },
+    "DIGITAL Command Language": {
+        "color": "#606173"
+    },
+    "DM": {
+        "color": "#447265"
+    },
+    "Dockerfile": {
+        "color": "#384d54"
+    },
+    "Dogescript": {
+        "color": "#cca760"
+    },
+    "DTrace": {
+        "color": "#606173"
+    },
+    "Dylan": {
+        "color": "#6c616e"
+    },
+    "E": {
+        "color": "#ccce35"
+    },
+    "eC": {
+        "color": "#913960"
+    },
+    "ECL": {
+        "color": "#8a1267"
+    },
+    "ECLiPSe": {
+        "color": "#606173"
+    },
+    "Eiffel": {
+        "color": "#946d57"
+    },
+    "Elixir": {
+        "color": "#6e4a7e"
+    },
+    "Elm": {
+        "color": "#60B5CC"
+    },
+    "Emacs Lisp": {
+        "color": "#c065db"
+    },
+    "EmberScript": {
+        "color": "#FFF4F3"
+    },
+    "EQ": {
+        "color": "#a78649"
+    },
+    "Erlang": {
+        "color": "#B83998"
+    },
+    "F#": {
+        "color": "#b845fc"
+    },
+    "F*": {
+        "color": "#572e30"
+    },
+    "Factor": {
+        "color": "#636746"
+    },
+    "Fancy": {
+        "color": "#7b9db4"
+    },
+    "Fantom": {
+        "color": "#14253c"
+    },
+    "Filebench WML": {
+        "color": "#606173"
+    },
+    "Filterscript": {
+        "color": "#606173"
+    },
+    "fish": {
+        "color": "#606173"
+    },
+    "FLUX": {
+        "color": "#88ccff"
+    },
+    "Forth": {
+        "color": "#341708"
+    },
+    "Fortran": {
+        "color": "#4d41b1"
+    },
+    "FreeMarker": {
+        "color": "#0050b2"
+    },
+    "Frege": {
+        "color": "#00cafe"
+    },
+    "Game Maker Language": {
+        "color": "#71b417"
+    },
+    "GAMS": {
+        "color": "#606173"
+    },
+    "GAP": {
+        "color": "#606173"
+    },
+    "GCC Machine Description": {
+        "color": "#606173"
+    },
+    "GDB": {
+        "color": "#606173"
+    },
+    "GDScript": {
+        "color": "#355570"
+    },
+    "Genie": {
+        "color": "#fb855d"
+    },
+    "Genshi": {
+        "color": "#606173"
+    },
+    "Gentoo Ebuild": {
+        "color": "#606173"
+    },
+    "Gentoo Eclass": {
+        "color": "#606173"
+    },
+    "Gherkin": {
+        "color": "#5B2063"
+    },
+    "GLSL": {
+        "color": "#606173"
+    },
+    "Glyph": {
+        "color": "#c1ac7f"
+    },
+    "Gnuplot": {
+        "color": "#f0a9f0"
+    },
+    "Go": {
+        "color": "#00ADD8"
+    },
+    "Golo": {
+        "color": "#88562A"
+    },
+    "Gosu": {
+        "color": "#82937f"
+    },
+    "Grace": {
+        "color": "#606173"
+    },
+    "Grammatical Framework": {
+        "color": "#79aa7a"
+    },
+    "Groovy": {
+        "color": "#e69f56"
+    },
+    "Groovy Server Pages": {
+        "color": "#606173"
+    },
+    "Hack": {
+        "color": "#878787"
+    },
+    "Harbour": {
+        "color": "#0e60e3"
+    },
+    "Haskell": {
+        "color": "#5e5086"
+    },
+    "Haxe": {
+        "color": "#df7900"
+    },
+    "HCL": {
+        "color": "#606173"
+    },
+    "HiveQL": {
+        "color": "#dce200"
+    },
+    "HLSL": {
+        "color": "#606173"
+    },
+    "HTML": {
+        "color": "#e34c26"
+    },
+    "Hy": {
+        "color": "#7790B2"
+    },
+    "HyPhy": {
+        "color": "#606173"
+    },
+    "IDL": {
+        "color": "#a3522f"
+    },
+    "Idris": {
+        "color": "#b30000"
+    },
+    "IGOR Pro": {
+        "color": "#606173"
+    },
+    "Inform 7": {
+        "color": "#606173"
+    },
+    "Inno Setup": {
+        "color": "#606173"
+    },
+    "Io": {
+        "color": "#a9188d"
+    },
+    "Ioke": {
+        "color": "#078193"
+    },
+    "Isabelle": {
+        "color": "#FEFE00"
+    },
+    "Isabelle ROOT": {
+        "color": "#606173"
+    },
+    "J": {
+        "color": "#9EEDFF"
+    },
+    "Jasmin": {
+        "color": "#606173"
+    },
+    "Java": {
+        "color": "#b07219"
+    },
+    "Java Server Pages": {
+        "color": "#606173"
+    },
+    "JavaScript": {
+        "color": "#f1e05a"
+    },
+    "JFlex": {
+        "color": "#606173"
+    },
+    "Jison": {
+        "color": "#606173"
+    },
+    "Jison Lex": {
+        "color": "#606173"
+    },
+    "Jolie": {
+        "color": "#843179"
+    },
+    "JSONiq": {
+        "color": "#40d47e"
+    },
+    "Jsonnet": {
+        "color": "#0064bd"
+    },
+    "JSX": {
+        "color": "#606173"
+    },
+    "Julia": {
+        "color": "#a270ba"
+    },
+    "Jupyter Notebook": {
+        "color": "#DA5B0B"
+    },
+    "Kotlin": {
+        "color": "#F18E33"
+    },
+    "KRL": {
+        "color": "#28430A"
+    },
+    "LabVIEW": {
+        "color": "#606173"
+    },
+    "Lasso": {
+        "color": "#999999"
+    },
+    "Lean": {
+        "color": "#606173"
+    },
+    "Lex": {
+        "color": "#DBCA00"
+    },
+    "LFE": {
+        "color": "#4C3023"
+    },
+    "LilyPond": {
+        "color": "#606173"
+    },
+    "Limbo": {
+        "color": "#606173"
+    },
+    "Literate Agda": {
+        "color": "#606173"
+    },
+    "Literate CoffeeScript": {
+        "color": "#606173"
+    },
+    "Literate Haskell": {
+        "color": "#606173"
+    },
+    "LiveScript": {
+        "color": "#499886"
+    },
+    "LLVM": {
+        "color": "#185619"
+    },
+    "Logos": {
+        "color": "#606173"
+    },
+    "Logtalk": {
+        "color": "#606173"
+    },
+    "LOLCODE": {
+        "color": "#cc9900"
+    },
+    "LookML": {
+        "color": "#652B81"
+    },
+    "LoomScript": {
+        "color": "#606173"
+    },
+    "LSL": {
+        "color": "#3d9970"
+    },
+    "Lua": {
+        "color": "#000080"
+    },
+    "M": {
+        "color": "#606173"
+    },
+    "M4": {
+        "color": "#606173"
+    },
+    "M4Sugar": {
+        "color": "#606173"
+    },
+    "Makefile": {
+        "color": "#427819"
+    },
+    "Mako": {
+        "color": "#606173"
+    },
+    "Mask": {
+        "color": "#f97732"
+    },
+    "Mathematica": {
+        "color": "#606173"
+    },
+    "MATLAB": {
+        "color": "#e16737"
+    },
+    "Max": {
+        "color": "#c4a79c"
+    },
+    "MAXScript": {
+        "color": "#00a6a6"
+    },
+    "mcfunction": {
+        "color": "#E22837"
+    },
+    "Mercury": {
+        "color": "#ff2b2b"
+    },
+    "Meson": {
+        "color": "#007800"
+    },
+    "Metal": {
+        "color": "#8f14e9"
+    },
+    "MiniD": {
+        "color": "#606173"
+    },
+    "Mirah": {
+        "color": "#c7a938"
+    },
+    "Modelica": {
+        "color": "#606173"
+    },
+    "Modula-2": {
+        "color": "#606173"
+    },
+    "Modula-3": {
+        "color": "#223388"
+    },
+    "Module Management System": {
+        "color": "#606173"
+    },
+    "Monkey": {
+        "color": "#606173"
+    },
+    "Moocode": {
+        "color": "#606173"
+    },
+    "MoonScript": {
+        "color": "#606173"
+    },
+    "MQL4": {
+        "color": "#62A8D6"
+    },
+    "MQL5": {
+        "color": "#4A76B8"
+    },
+    "MTML": {
+        "color": "#b7e1f4"
+    },
+    "MUF": {
+        "color": "#606173"
+    },
+    "mupad": {
+        "color": "#606173"
+    },
+    "Myghty": {
+        "color": "#606173"
+    },
+    "NCL": {
+        "color": "#28431f"
+    },
+    "Nearley": {
+        "color": "#990000"
+    },
+    "Nemerle": {
+        "color": "#3d3c6e"
+    },
+    "nesC": {
+        "color": "#94B0C7"
+    },
+    "NetLinx": {
+        "color": "#0aa0ff"
+    },
+    "NetLinx+ERB": {
+        "color": "#747faa"
+    },
+    "NetLogo": {
+        "color": "#ff6375"
+    },
+    "NewLisp": {
+        "color": "#87AED7"
+    },
+    "Nextflow": {
+        "color": "#3ac486"
+    },
+    "Nim": {
+        "color": "#37775b"
+    },
+    "Nit": {
+        "color": "#009917"
+    },
+    "Nix": {
+        "color": "#7e7eff"
+    },
+    "NSIS": {
+        "color": "#606173"
+    },
+    "Nu": {
+        "color": "#c9df40"
+    },
+    "NumPy": {
+        "color": "#606173"
+    },
+    "Objective-C": {
+        "color": "#438eff"
+    },
+    "Objective-C++": {
+        "color": "#6866fb"
+    },
+    "Objective-J": {
+        "color": "#ff0c5a"
+    },
+    "OCaml": {
+        "color": "#3be133"
+    },
+    "Omgrofl": {
+        "color": "#cabbff"
+    },
+    "ooc": {
+        "color": "#b0b77e"
+    },
+    "Opa": {
+        "color": "#606173"
+    },
+    "Opal": {
+        "color": "#f7ede0"
+    },
+    "OpenCL": {
+        "color": "#606173"
+    },
+    "OpenEdge ABL": {
+        "color": "#606173"
+    },
+    "OpenRC runscript": {
+        "color": "#606173"
+    },
+    "OpenSCAD": {
+        "color": "#606173"
+    },
+    "Ox": {
+        "color": "#606173"
+    },
+    "Oxygene": {
+        "color": "#cdd0e3"
+    },
+    "Oz": {
+        "color": "#fab738"
+    },
+    "P4": {
+        "color": "#7055b5"
+    },
+    "Pan": {
+        "color": "#cc0000"
+    },
+    "Papyrus": {
+        "color": "#6600cc"
+    },
+    "Parrot": {
+        "color": "#f3ca0a"
+    },
+    "Parrot Assembly": {
+        "color": "#606173"
+    },
+    "Parrot Internal Representation": {
+        "color": "#606173"
+    },
+    "Pascal": {
+        "color": "#E3F171"
+    },
+    "Pawn": {
+        "color": "#dbb284"
+    },
+    "Pep8": {
+        "color": "#C76F5B"
+    },
+    "Perl": {
+        "color": "#0298c3"
+    },
+    "Perl 6": {
+        "color": "#0000fb"
+    },
+    "PHP": {
+        "color": "#4F5D95"
+    },
+    "PicoLisp": {
+        "color": "#606173"
+    },
+    "PigLatin": {
+        "color": "#fcd7de"
+    },
+    "Pike": {
+        "color": "#005390"
+    },
+    "PLpgSQL": {
+        "color": "#606173"
+    },
+    "PLSQL": {
+        "color": "#dad8d8"
+    },
+    "PogoScript": {
+        "color": "#d80074"
+    },
+    "Pony": {
+        "color": "#606173"
+    },
+    "PostScript": {
+        "color": "#da291c"
+    },
+    "POV-Ray SDL": {
+        "color": "#606173"
+    },
+    "PowerBuilder": {
+        "color": "#8f0f8d"
+    },
+    "PowerShell": {
+        "color": "#012456"
+    },
+    "Processing": {
+        "color": "#0096D8"
+    },
+    "Prolog": {
+        "color": "#74283c"
+    },
+    "Propeller Spin": {
+        "color": "#7fa2a7"
+    },
+    "Puppet": {
+        "color": "#302B6D"
+    },
+    "PureBasic": {
+        "color": "#5a6986"
+    },
+    "PureScript": {
+        "color": "#1D222D"
+    },
+    "Python": {
+        "color": "#3572A5"
+    },
+    "Python console": {
+        "color": "#606173"
+    },
+    "q": {
+        "color": "#0040cd"
+    },
+    "QMake": {
+        "color": "#606173"
+    },
+    "QML": {
+        "color": "#44a51c"
+    },
+    "Quake": {
+        "color": "#882233"
+    },
+    "R": {
+        "color": "#198CE7"
+    },
+    "Racket": {
+        "color": "#3c5caa"
+    },
+    "Ragel": {
+        "color": "#9d5200"
+    },
+    "RAML": {
+        "color": "#77d9fb"
+    },
+    "Rascal": {
+        "color": "#fffaa0"
+    },
+    "REALbasic": {
+        "color": "#606173"
+    },
+    "Reason": {
+        "color": "#606173"
+    },
+    "Rebol": {
+        "color": "#358a5b"
+    },
+    "Red": {
+        "color": "#f50000"
+    },
+    "Redcode": {
+        "color": "#606173"
+    },
+    "Ren'Py": {
+        "color": "#ff7f7f"
+    },
+    "RenderScript": {
+        "color": "#606173"
+    },
+    "REXX": {
+        "color": "#606173"
+    },
+    "Ring": {
+        "color": "#2D54CB"
+    },
+    "RobotFramework": {
+        "color": "#606173"
+    },
+    "Roff": {
+        "color": "#ecdebe"
+    },
+    "Rouge": {
+        "color": "#cc0088"
+    },
+    "RPC": {
+        "color": "#606173"
+    },
+    "Ruby": {
+        "color": "#701516"
+    },
+    "RUNOFF": {
+        "color": "#665a4e"
+    },
+    "Rust": {
+        "color": "#dea584"
+    },
+    "Sage": {
+        "color": "#606173"
+    },
+    "SaltStack": {
+        "color": "#646464"
+    },
+    "SAS": {
+        "color": "#B34936"
+    },
+    "Scala": {
+        "color": "#c22d40"
+    },
+    "Scheme": {
+        "color": "#1e4aec"
+    },
+    "Scilab": {
+        "color": "#606173"
+    },
+    "sed": {
+        "color": "#64b970"
+    },
+    "Self": {
+        "color": "#0579aa"
+    },
+    "ShaderLab": {
+        "color": "#606173"
+    },
+    "Shell": {
+        "color": "#89e051"
+    },
+    "ShellSession": {
+        "color": "#606173"
+    },
+    "Shen": {
+        "color": "#120F14"
+    },
+    "Slash": {
+        "color": "#007eff"
+    },
+    "Slice": {
+        "color": "#003fa2"
+    },
+    "Smali": {
+        "color": "#606173"
+    },
+    "Smalltalk": {
+        "color": "#596706"
+    },
+    "Smarty": {
+        "color": "#606173"
+    },
+    "SMT": {
+        "color": "#606173"
+    },
+    "Solidity": {
+        "color": "#AA6746"
+    },
+    "SourcePawn": {
+        "color": "#5c7611"
+    },
+    "SQF": {
+        "color": "#3F3F3F"
+    },
+    "SQLPL": {
+        "color": "#606173"
+    },
+    "Squirrel": {
+        "color": "#800000"
+    },
+    "SRecode Template": {
+        "color": "#348a34"
+    },
+    "Stan": {
+        "color": "#b2011d"
+    },
+    "Standard ML": {
+        "color": "#dc566d"
+    },
+    "Stata": {
+        "color": "#606173"
+    },
+    "SuperCollider": {
+        "color": "#46390b"
+    },
+    "Swift": {
+        "color": "#ffac45"
+    },
+    "SystemVerilog": {
+        "color": "#DAE1C2"
+    },
+    "Tcl": {
+        "color": "#e4cc98"
+    },
+    "Tcsh": {
+        "color": "#606173"
+    },
+    "Terra": {
+        "color": "#00004c"
+    },
+    "TeX": {
+        "color": "#3D6117"
+    },
+    "Thrift": {
+        "color": "#606173"
+    },
+    "TI Program": {
+        "color": "#A0AA87"
+    },
+    "TLA": {
+        "color": "#606173"
+    },
+    "Turing": {
+        "color": "#cf142b"
+    },
+    "TXL": {
+        "color": "#606173"
+    },
+    "TypeScript": {
+        "color": "#2b7489"
+    },
+    "Unified Parallel C": {
+        "color": "#606173"
+    },
+    "Unix Assembly": {
+        "color": "#606173"
+    },
+    "Uno": {
+        "color": "#606173"
+    },
+    "UnrealScript": {
+        "color": "#a54c4d"
+    },
+    "UrWeb": {
+        "color": "#606173"
+    },
+    "Vala": {
+        "color": "#fbe5cd"
+    },
+    "VCL": {
+        "color": "#148AA8"
+    },
+    "Verilog": {
+        "color": "#b2b7f8"
+    },
+    "VHDL": {
+        "color": "#adb2cb"
+    },
+    "Vim script": {
+        "color": "#199f4b"
+    },
+    "Visual Basic": {
+        "color": "#945db7"
+    },
+    "Volt": {
+        "color": "#1F1F1F"
+    },
+    "Vue": {
+        "color": "#2c3e50"
+    },
+    "wdl": {
+        "color": "#42f1f4"
+    },
+    "WebAssembly": {
+        "color": "#04133b"
+    },
+    "WebIDL": {
+        "color": "#606173"
+    },
+    "wisp": {
+        "color": "#7582D1"
+    },
+    "X10": {
+        "color": "#4B6BEF"
+    },
+    "xBase": {
+        "color": "#403a40"
+    },
+    "XC": {
+        "color": "#99DA07"
+    },
+    "Xojo": {
+        "color": "#606173"
+    },
+    "XProc": {
+        "color": "#606173"
+    },
+    "XQuery": {
+        "color": "#5232e7"
+    },
+    "XS": {
+        "color": "#606173"
+    },
+    "XSLT": {
+        "color": "#EB8CEB"
+    },
+    "Xtend": {
+        "color": "#606173"
+    },
+    "Yacc": {
+        "color": "#4B6C4B"
+    },
+    "YARA": {
+        "color": "#220000"
+    },
+    "YASnippet": {
+        "color": "#32AB90"
+    },
+    "ZAP": {
+        "color": "#0d665e"
+    },
+    "Zephir": {
+        "color": "#118f9e"
+    },
+    "Zig": {
+        "color": "#ec915c"
+    },
+    "ZIL": {
+        "color": "#dc75e5"
+    },
+    "Zimpl": {
+        "color": "#606173"
+    }
+}

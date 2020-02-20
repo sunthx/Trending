@@ -1,7 +1,7 @@
 var file = $file.read("setting.conf")
 var widget_width = $device.info.screen.width - 10
-var github_user_name = (typeof file == "undefined") ? "geffzhang" : file.string
-var contribution_request_url = "http://192.168.0.110:8080/contributions?user="
+var github_user_name = (typeof file == "undefined") ? "sunthx" : file.string
+var contribution_request_url = "http://192.168.0.108:8080/contributions?user="
 var rect_max_width_height = 10
 var rect_margin = 1
 var view_margin = 5
