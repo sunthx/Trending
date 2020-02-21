@@ -2,6 +2,7 @@ exports.header = {
     type: "view",
     layout: function (make, view) {
         make.height.equalTo(125)
+        make.top.left.right.inset(0)
         make.width.equalTo(view.super)
     },
     props: {
