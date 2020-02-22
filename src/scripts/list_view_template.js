@@ -41,6 +41,19 @@ const repoDetailView = [
         }
     },
     {
+        type: "label",
+        props: {
+            id: "lang",
+            font: $font('14'),
+            textColor: grayColor
+        },
+        layout: function(make) {
+            make.bottom.inset(3)
+            make.width.equalTo(80)
+            make.left.inset(10)
+        }
+    },
+    {
         type: "image",
         props: {
             id: "imgStar",
@@ -48,7 +61,7 @@ const repoDetailView = [
         },
         layout: function (make) {
             make.bottom.inset(5)
-            make.left.inset(10)
+            make.left.equalTo($('lang').right)
         }
     },
     {
@@ -139,6 +152,7 @@ const developerDetailView = [
         },
         layout: function (make) {
             make.top.inset(5)
+            make.width.equalTo(121)
             make.left.equalTo($('avatar').right).offset(10)
         }
     },
@@ -150,6 +164,7 @@ const developerDetailView = [
             font: $font('16')
         },
         layout: function(make){
+            make.width.equalTo(121)
             make.top.equalTo($('userName').bottom).offset(5)
             make.left.equalTo($('avatar').right).offset(10)
         }
@@ -161,8 +176,32 @@ const developerDetailView = [
             icon: $icon('135',$color('#e36209'),$size(16,16)),
         },
         layout:function(make){
-            make.left.equalTo($('index').right).offset(10) 
-            make.top.equalTo($('avatar').bottom).offset(10)
+            make.left.equalTo($('userName').right).offset(1)
+            make.top.equalTo($('index').top).offset(3)
+        }
+    },
+    {
+        type: "label",
+        props:{
+            text: "POPULAR REPO",
+            textColor: $color('#e36209'),
+            font: $font('14')
+        },
+        layout:function(make){
+            make.left.equalTo($('imgPopularRepo').right).offset(5) 
+            make.top.equalTo($('index').top).offset(3)
+        }
+    },
+    {
+        type: "image",
+        props: {
+            id: "imgRepo",
+            src: "/assets/repo.png"
+        },
+        layout: function (make) {
+            make.left.equalTo($('imgPopularRepo').left)
+            make.top.equalTo($('imgPopularRepo').bottom).offset(5)
+            make.size.equalTo($size(16, 16))
         }
     },
     {
@@ -173,8 +212,8 @@ const developerDetailView = [
             titleColor: secondColor
         },
         layout:function(make){
-            make.left.equalTo($('imgPopularRepo').right).offset(5) 
-            make.top.equalTo($('imgPopularRepo').top).offset(-9)
+            make.left.equalTo($('imgRepo').right).offset(5) 
+            make.top.equalTo($('imgRepo').top).offset(-11)
         }
     },
     {
@@ -182,9 +221,11 @@ const developerDetailView = [
         props:{
             id:"description",
             titleColor: grayColor,
-            font: $font('12')
+            font: $font('12'),
+            lines:3
         },
         layout:function(make){
+            make.width.equalTo(180)
             make.left.equalTo($('repo_name').left) 
             make.top.equalTo($('repo_name').bottom).offset(-5)
         } 
