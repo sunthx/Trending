@@ -1,14 +1,13 @@
 let host = "http://192.168.0.108:8080/";
 let trendingRequestUrl = host + "trending";
 let developerTrendingRequestUrl = trendingRequestUrl+ "/developers"
+let contributionRequestUrl = host + "contributions?user="
 
 exports.getTrendingData = async(since,spoken,programLang,dataType) => {
     var isRepoRequest = dataType == "repo"
     var requestUrl = isRepoRequest ? trendingRequestUrl + getRequestPath(since,spoken,programLang) : developerTrendingRequestUrl+getRequestPath(since,spoken,programLang)
-    $console.info("reqesut url:" + requestUrl)
 
     var resp = await $http.get(requestUrl)
-    $console.info(resp);
     var dataArray = resp.data.data
     var dataSource = []
     if(dataArray == null){
@@ -20,8 +19,25 @@ exports.getTrendingData = async(since,spoken,programLang,dataType) => {
         dataSource.push(item)
     }
 
-    $console.info(dataSource.length);
     return dataSource
+}
+
+exports.getContributionData = async(userName) => {
+    var requestUrl = contributionRequestUrl + userName
+    var resp = await $http.get(requestUrl)
+    var contributions = []
+    var data_array = resp.data.data
+    for (let index = 0; index < data_array.length; index++) {
+        const contribution = data_array[index];
+        contributions.push({
+            level: contribution.level,
+            total:contribution.total,
+            weekday: contribution.weekday,
+            defaultColor: contribution.color
+        })
+    }
+
+    return contributions
 }
 
 function developerTrendDataParser(item){
@@ -58,8 +74,8 @@ function repoTrendDataParser(item) {
         author: {title: "@"+array[1]},
         lang: { text: item.lang },
         description: { text: item.description.replace(/<g-emoji [\s\S]*?>|<\/g-emoji>|<a[\s\S]*?>|<\/a>/g, "") },
-        star: { title: item.star },
-        fork: { title: item.fork },
+        star: { text: item.star },
+        fork: { text: item.fork },
         url: item.url
     }
     return repo
