@@ -6,7 +6,7 @@ const repoDetailView = [
     {
         type: "image",
         props: {
-            src: "/assets/repo.png"
+            icon: $icon('057',grayColor,iconSize14)
         },
         layout: function (make) {
             make.top.inset(8)
@@ -41,23 +41,37 @@ const repoDetailView = [
         }
     },
     {
+        type: "view",
+        props:{
+            id:"vLang",
+            bgcolor: $color('red'),
+            circular: true
+        },
+        layout: function(make) {
+            make.bottom.inset(3)
+            make.width.equalTo(13)
+            make.height.equalTo(13)
+            make.left.inset(10)
+        } 
+    },
+    {
         type: "label",
         props: {
             id: "lang",
-            font: $font('14'),
+            font: $font('12'),
             textColor: grayColor
         },
         layout: function(make) {
             make.bottom.inset(3)
             make.width.equalTo(80)
-            make.left.inset(10)
+            make.left.equalTo($('vLang').right).offset(2)
         }
     },
     {
         type: "image",
         props: {
             id: "imgStar",
-            icon: $icon("062", grayColor, $size(14, 14))
+            icon: $icon("062", grayColor, $size(12, 12))
         },
         layout: function (make) {
             make.bottom.inset(5)
@@ -65,40 +79,40 @@ const repoDetailView = [
         }
     },
     {
-        type: "button",
+        type: "label",
         props: {
             id: "star",
             bgcolor: $color('clear'),
             titleColor: grayColor,
-            font: $font('14')
+            font: $font('12')
         },
         layout: function (make) {
             make.left.equalTo($('imgStar').right).offset(3)
-            make.bottom.inset(-3)
+            make.bottom.inset(2.2)
         }
     },
     {
         type: "image",
         props: {
             id: "imgFork",
-            icon: $icon('163', grayColor, iconSize14)
+            icon: $icon('163', grayColor, $size(12,12))
         },
         layout: function (make) {
             make.left.equalTo($('imgStar').right).offset(65)
-            make.bottom.inset(5)
+            make.bottom.inset(4)
         }
     },
     {
-        type: "button",
+        type: "label",
         props: {
             id: "fork",
             bgcolor: $color('clear'),
             titleColor: grayColor,
-            font: $font('14')
+            font: $font('12')
         },
         layout: function (make) {
-            make.left.equalTo($('imgFork').right).offset(2)
-            make.bottom.inset(-3)
+            make.left.equalTo($('imgFork').right).offset(3)
+            make.bottom.inset(2.2)
         }
     },
     {
@@ -196,12 +210,11 @@ const developerDetailView = [
         type: "image",
         props: {
             id: "imgRepo",
-            src: "/assets/repo.png"
+            icon: $icon('057',grayColor,iconSize14)
         },
         layout: function (make) {
-            make.left.equalTo($('imgPopularRepo').left)
+            make.left.equalTo($('imgPopularRepo').left).offset(2)
             make.top.equalTo($('imgPopularRepo').bottom).offset(5)
-            make.size.equalTo($size(16, 16))
         }
     },
     {
@@ -237,19 +250,18 @@ var repoList = {
     props: {
         id: "list",
         separatorHidden: false,
-        style: 0,
+        separatorColor: $color("white"),
         selectable: true,
-        rowHeight: 100,
+        rowHeight: 90,
         template: {
             type: "view",
+            props:{
+                bgcolor:$color("#f8f8f8")
+            },
             views: repoDetailView,
         }
     },
-    layout: function (make, view) {
-        make.top.inset(170)
-        make.right.left.inset(0)
-        make.bottom.inset(0)
-    },
+    layout: layout,
     events: {
         didSelect: repolistClicked
     }
@@ -260,19 +272,18 @@ var developerList = {
     props: {
         id: "list",
         separatorHidden: false,
-        style: 0,
+        separatorColor: $color("white"),
         selectable: true,
         rowHeight: 100,
         template: {
             type: "view",
+            props:{
+                bgcolor:$color("#f8f8f8")
+            },
             views: developerDetailView,
         }
     },
-    layout: function (make, view) {
-        make.top.inset(170)
-        make.right.left.inset(0)
-        make.bottom.inset(0)
-    },
+    layout: layout,
     events: {
         didSelect: developerListClicked
     } 
@@ -280,6 +291,12 @@ var developerList = {
 
 exports.repoList = repoList 
 exports.developerList = developerList
+
+function layout(make,view){
+    make.top.equalTo($('menu').bottom)
+    make.right.left.inset(0)
+    make.bottom.inset(0)
+}
 
 function repolistClicked(tableView,indexPath){
     var data = tableView.object(indexPath)

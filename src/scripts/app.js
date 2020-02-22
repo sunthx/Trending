@@ -22,12 +22,14 @@ const defaultProgramLanguageValue = ""
 var menu = {
     type: "view",
     props: {
+        id:"menu",
         bgcolor: $color.clear
     },
     layout: function (make, view) {
+        var headerView = $('header')
         make.left.right.inset(0)
         make.height.equalTo(50)
-        make.top.inset(125)
+        make.top.equalTo(headerView.bottom)
     },
     views: [
         {
@@ -37,7 +39,7 @@ var menu = {
             },
             props: {
                 id: "menuTab",
-                items: ["Repositories", "Developers"],
+                items: ["Repo", "Rank"],
                 tintColor: $color('#586069'),
             },
             events: {
