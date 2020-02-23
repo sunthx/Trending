@@ -317,7 +317,6 @@ function developerListClicked(tableView,indexPath){
 }
 
 function openUrl(title,url) {
-    $console.warn(title + "--"+url)
     $ui.push({
         props: {
           title: title  

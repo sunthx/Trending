@@ -7,8 +7,14 @@ const crypto = require('crypto-js')
 const source = crypto.SHA256($device.info).toString()
 const langColors = require('./resources').getLangColors()
 
-exports.getVersion() = async () => {
-    
+exports.getInfo = async () => {
+    var url = "https://raw.githubusercontent.com/sunthx/jsbox-github-trending/master/update.json"
+    var resp = await $http.get(url)
+    return {
+        url: resp.data.url,
+        version: resp.data.version,
+        name: resp.data.name
+    }
 }
 
 exports.getTrendingData = async(since,spoken,programLang,dataType) => {

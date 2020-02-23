@@ -25,6 +25,7 @@ const operationButtons =[
         },
         events:{
             tapped: function(){
+                $device.taptic(0)
                 clearGithubUserName()
                 refresh()
             }
@@ -47,6 +48,7 @@ const operationButtons =[
         },
         events:{
             tapped: function(){
+                $device.taptic(0)
                 refresh()
             }
         }

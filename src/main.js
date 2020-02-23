@@ -3,3 +3,6 @@ if ($app.env == $env.today) {
 }else if ($app.env == $env.app){
     var app = require('scripts/app')
 }
+
+var updater = require('scripts/updater')
+updater.check()
