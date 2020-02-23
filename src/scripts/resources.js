@@ -1501,7 +1501,8 @@ exports.getProgramLanguages = () => {
     return result;
 }
 exports.calendar = [
-    ["#EBEDF0","#ACD5F2","#7FA8C9","#527BA0","#254E77"],
-    ["#EBEDF0","#C6E48B","#7BC96F","#239A3B","#196127"],
-    ["#EBEDF0","#9E1720","#7F150A","#651109","#3C0908"],
+    ["#F0F0F0","#ACD5F2","#7FA8C9","#527BA0","#254E77"],
+    ["#F0F0F0","#C6E48B","#7BC96F","#239A3B","#196127"],
+    ["#F0F0F0","#E1C4C4","#C48888","#984B4B","#613030"],
+    ["#F0F0F0","#FBECEA","#F3D0C7","#DEA088","#AB7250"],
 ]

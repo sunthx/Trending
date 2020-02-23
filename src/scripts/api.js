@@ -1,4 +1,4 @@
-let host = "http://192.168.0.108:8080/";
+let host = "http://api.trending.sunth.cn/";
 let trendingRequestUrl = host + "trending";
 let developerTrendingRequestUrl = trendingRequestUrl+ "/developers"
 let contributionRequestUrl = host + "contributions?user="
