@@ -4,8 +4,6 @@
 
 > Power By JSBox 2.0
 
-![](images/1.PNG)
-
-![](images/2.PNG)
-
-![](images/3.PNG)
+<img src="https://github.com/sunthx/jsbox-github-trending/blob/master/images/1.PNG" width="300"/>
+<img src="https://github.com/sunthx/jsbox-github-trending/blob/master/images/2.PNG" width="300"/>
+<img src="https://github.com/sunthx/jsbox-github-trending/blob/master/images/3.PNG" width="300"/>
