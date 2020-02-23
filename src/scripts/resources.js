@@ -1478,6 +1478,9 @@ var colorsJsonObject = {
     "Zimpl": {
         "color": null,
         "url": "https://github.com/trending?l=Zimpl"
+    },
+    "Mars":{
+        "color": "#C77632"
     }
 }
 
@@ -1497,3 +1500,8 @@ exports.getProgramLanguages = () => {
     result.set("Chinese", "zh")
     return result;
 }
+exports.calendar = [
+    ["#EBEDF0","#ACD5F2","#7FA8C9","#527BA0","#254E77"],
+    ["#EBEDF0","#C6E48B","#7BC96F","#239A3B","#196127"],
+    ["#EBEDF0","#9E1720","#7F150A","#651109","#3C0908"],
+]

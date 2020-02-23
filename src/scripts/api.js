@@ -3,6 +3,8 @@ let trendingRequestUrl = host + "trending";
 let developerTrendingRequestUrl = trendingRequestUrl+ "/developers"
 let contributionRequestUrl = host + "contributions?user="
 
+const langColors = require('./resources').getLangColors()
+
 exports.getTrendingData = async(since,spoken,programLang,dataType) => {
     var isRepoRequest = dataType == "repo"
     var requestUrl = isRepoRequest ? trendingRequestUrl + getRequestPath(since,spoken,programLang) : developerTrendingRequestUrl+getRequestPath(since,spoken,programLang)
@@ -57,7 +59,7 @@ function developerTrendDataParser(item){
             src: item.user.avatar
         },
         repo_name: {
-            title: item.popular_repository.name
+            text: item.popular_repository.name
         },
         url:{
             text: item.popular_repository.url
@@ -76,8 +78,17 @@ function repoTrendDataParser(item) {
         description: { text: item.description.replace(/<g-emoji [\s\S]*?>|<\/g-emoji>|<a[\s\S]*?>|<\/a>/g, "") },
         star: { text: item.star },
         fork: { text: item.fork },
+        langColor:{bgcolor: null},
         url: item.url
     }
+
+    var langColor = langColors.get(item.lang)
+    var colorValue = "black"
+    if(langColor != null && langColor.color != null) {
+        colorValue = langColor.color
+    } 
+
+    repo.langColor.bgcolor = $color(colorValue)
     return repo
 }
 

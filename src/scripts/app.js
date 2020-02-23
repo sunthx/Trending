@@ -1,7 +1,7 @@
 const header = require("./header").header
 const templates = require("./list_view_template")
 const api = require("./api")
-const helper = require("./helper")
+const helper = require("./resources")
 
 const repoList = templates.repoList
 const developerList = templates.developerList

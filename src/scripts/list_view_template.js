@@ -43,14 +43,13 @@ const repoDetailView = [
     {
         type: "view",
         props:{
-            id:"vLang",
-            bgcolor: $color('red'),
+            id:"langColor",
             circular: true
         },
         layout: function(make) {
-            make.bottom.inset(3)
-            make.width.equalTo(13)
-            make.height.equalTo(13)
+            make.bottom.inset(5)
+            make.width.equalTo(10)
+            make.height.equalTo(10)
             make.left.inset(10)
         } 
     },
@@ -63,8 +62,8 @@ const repoDetailView = [
         },
         layout: function(make) {
             make.bottom.inset(3)
-            make.width.equalTo(80)
-            make.left.equalTo($('vLang').right).offset(2)
+            make.width.equalTo(75)
+            make.left.equalTo($('langColor').right).offset(2)
         }
     },
     {
@@ -98,7 +97,7 @@ const repoDetailView = [
             icon: $icon('163', grayColor, $size(12,12))
         },
         layout: function (make) {
-            make.left.equalTo($('imgStar').right).offset(65)
+            make.left.equalTo($('imgStar').right).offset(55)
             make.bottom.inset(4)
         }
     },
@@ -125,7 +124,7 @@ const repoDetailView = [
             font: $font('14')
         },
         layout: function (make) {
-            make.bottom.inset(-1)
+            make.bottom.inset(-5)
             make.right.inset(10)
         }
     }
@@ -220,11 +219,20 @@ const developerDetailView = [
     {
         type:"button",
         props:{
-            id:"repo_name",
-            bgcolor: $color('clear'),
-            titleColor: secondColor
+            bgcolor: $color('clear')
         },
+        views:[
+            {
+                type:"label",
+                props:{
+                    id:"repo_name",
+                    textColor: secondColor
+                },
+                layout: $layout.fill 
+            }
+        ],
         layout:function(make){
+            make.width.equalTo(150)
             make.left.equalTo($('imgRepo').right).offset(5) 
             make.top.equalTo($('imgRepo').top).offset(-11)
         }
@@ -238,9 +246,9 @@ const developerDetailView = [
             lines:3
         },
         layout:function(make){
-            make.width.equalTo(180)
-            make.left.equalTo($('repo_name').left) 
-            make.top.equalTo($('repo_name').bottom).offset(-5)
+            make.left.equalTo($('imgRepo').left) 
+            make.right.inset(3)
+            make.top.equalTo($('imgRepo').bottom).offset(5)
         } 
     }
 ]
