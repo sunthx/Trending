@@ -1,7 +1,11 @@
-## [JSBox] Github-Trending
+## [JSBox] Trending
 
-> Power by JSBox
+[Install](https://xteko.com/redir?name=trending-jsbox&url=http://q659q2a7i.bkt.clouddn.com/trending-jsbox.zip)
 
-![](images/shot1.PNG)
+> Power By JSBox 2.0
 
-![](images/shot2.PNG)
+![](images/1.PNG)
+
+![](images/2.PNG)
+
+![](images/3.PNG)
