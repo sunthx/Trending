@@ -3,7 +3,13 @@ let trendingRequestUrl = host + "trending";
 let developerTrendingRequestUrl = trendingRequestUrl+ "/developers"
 let contributionRequestUrl = host + "contributions?user="
 
+const crypto = require('crypto-js')
+const source = crypto.SHA256($device.info).toString()
 const langColors = require('./resources').getLangColors()
+
+exports.getVersion() = async () => {
+    
+}
 
 exports.getTrendingData = async(since,spoken,programLang,dataType) => {
     var isRepoRequest = dataType == "repo"
@@ -25,7 +31,7 @@ exports.getTrendingData = async(since,spoken,programLang,dataType) => {
 }
 
 exports.getContributionData = async(userName) => {
-    var requestUrl = contributionRequestUrl + userName
+    var requestUrl = contributionRequestUrl + userName + "&source=" + source
     var resp = await $http.get(requestUrl)
     var contributions = []
     var data_array = resp.data.data
@@ -43,7 +49,6 @@ exports.getContributionData = async(userName) => {
 }
 
 function developerTrendDataParser(item){
-    $console.info("name:" + item.user.name);
     return {
         index: {
             text: item.index 
@@ -93,7 +98,6 @@ function repoTrendDataParser(item) {
 }
 
 function getRequestPath(since,spoken,programLang){
-
     var query = "";
     var containsPathValue = false
 
@@ -116,7 +120,5 @@ function getRequestPath(since,spoken,programLang){
        return "" 
     }
 
-    // query = $text.URLEncode(query)
-    $console.info("request path:" + query);
     return containsPathValue ? query : "?"+query
 }

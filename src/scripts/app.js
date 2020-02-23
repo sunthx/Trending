@@ -100,6 +100,7 @@ var menu = {
 }
 
 function spokenLangButtonClicked(){
+    $device.taptic(0)
     var items = []
     items.push("ALL")
 
@@ -120,6 +121,7 @@ function spokenLangButtonClicked(){
 }
 
 function programLangButtonClicked(){
+    $device.taptic(0)
     var items = []
     items.push("ALL")
 
@@ -139,6 +141,7 @@ function programLangButtonClicked(){
 }
 
 function sinceButtonClicked(){
+    $device.taptic(0)
     $ui.menu({
         items: ["Daily","Weekly","Monthly"],
         handler: sinceMenuSelected
@@ -173,10 +176,6 @@ async function loadTrendingData() {
     var spoken = $cache.get(spokenCacheKey)
     var programLang = $cache.get(programLanguageCacheKey)
 
-    $console.warn("since:" + since);
-    $console.warn("spoken:"+spoken)
-    $console.warn("programlang:"+programLang);
-
     var type = $cache.get(dataTypeCacheKey);
 
     list.startLoading()
@@ -187,6 +186,7 @@ async function loadTrendingData() {
 }
 
 function ChangeTreandDataView() {
+    $device.taptic(0)
     var dataType = $cache.get(dataTypeCacheKey);
     var mainView = $("mainView")
     if(dataType == defaultDataTypeValue){
@@ -219,7 +219,6 @@ async function render() {
     $ui.render(main_view);
 }
 
-$console.clear();
 $cache.set(sinceCacheKey,defaultSinceValue);
 $cache.set(dataTypeCacheKey,defaultDataTypeValue)
 $cache.set(spokenCacheKey,defaultSpokenValue)
