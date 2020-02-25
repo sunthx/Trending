@@ -2,8 +2,11 @@ const api = require('./api')
 
 exports.check = async () => {
     var info = await api.getInfo()
-    var version = $file.read("version.conf").string;
+    if(info == null || info.version == "") {
+        return
+    }
 
+    var version = $file.read("version.conf").string;
     if(version == info.version){
         return
     }

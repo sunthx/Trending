@@ -10,6 +10,11 @@ const langColors = require('./resources').getLangColors()
 exports.getInfo = async () => {
     var url = "https://raw.githubusercontent.com/sunthx/jsbox-github-trending/master/update.json"
     var resp = await $http.get(url)
+    if(resp.error != null)
+    {
+        return null;
+    }
+
     return {
         url: resp.data.url,
         version: resp.data.version,

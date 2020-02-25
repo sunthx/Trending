@@ -1502,7 +1502,5 @@ exports.getProgramLanguages = () => {
 }
 exports.calendar = [
     ["#F0F0F0","#ACD5F2","#7FA8C9","#527BA0","#254E77"],
-    ["#F0F0F0","#C6E48B","#7BC96F","#239A3B","#196127"],
-    ["#F0F0F0","#E1C4C4","#C48888","#984B4B","#613030"],
-    ["#F0F0F0","#FBECEA","#F3D0C7","#DEA088","#AB7250"],
+    ["#F0F0F0","#C6E48B","#7BC96F","#239A3B","#196127"]
 ]
