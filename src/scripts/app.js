@@ -1,13 +1,13 @@
 const header = require("./header").header
 const templates = require("./list_view_template")
 const api = require("./api")
-const helper = require("./resources")
+const resouces = require("./resources")
 
 const repoList = templates.repoList
 const developerList = templates.developerList
 
-const programLanguages = helper.getProgramLanguages() 
-const langColors = helper.getLangColors()
+const programLanguages = resouces.getProgramLanguages() 
+const langColors = resouces.getLangColors()
 
 const dataTypeCacheKey = "type"
 const sinceCacheKey = "since"
@@ -23,7 +23,7 @@ var menu = {
     type: "view",
     props: {
         id:"menu",
-        bgcolor: $color.clear
+        bgcolor: resouces.transparent
     },
     layout: function (make, view) {
         var headerView = $('header')
@@ -40,7 +40,7 @@ var menu = {
             props: {
                 id: "menuTab",
                 items: ["Repo", "Rank"],
-                tintColor: $color('#586069'),
+                tintColor: resouces.gray,
             },
             events: {
                 changed: trendingTypeChanged
@@ -50,7 +50,7 @@ var menu = {
             type: "button",
             props: {
                 id:"spokenButton",
-                bgcolor: $color('#586069'),
+                bgcolor: resouces.gray,
                 title: "ALL",
                 font: $font(12)
             },
@@ -67,7 +67,7 @@ var menu = {
             type: "button",
             props: {
                 id:"langButton",
-                bgcolor: $color('#586069'),
+                bgcolor: resouces.gray,
                 title: "ALL",
                 font: $font(12)
             },
@@ -84,7 +84,7 @@ var menu = {
             type: "button",
             props: {
                 id: "sinceButton",
-                bgcolor: $color('#586069'),
+                bgcolor: resouces.gray,
                 font: $font(12)
             },
             layout: function (make) {
@@ -219,11 +219,13 @@ async function render() {
     $ui.render(main_view);
 }
 
-$cache.set(sinceCacheKey,defaultSinceValue);
-$cache.set(dataTypeCacheKey,defaultDataTypeValue)
-$cache.set(spokenCacheKey,defaultSpokenValue)
-$cache.set(programLanguageCacheKey,defaultProgramLanguageValue);
-render()
-
-$('sinceButton').title = $cache.get(sinceCacheKey);
-loadTrendingData()
+exports.startup = ()=>{
+    $cache.set(sinceCacheKey,defaultSinceValue);
+    $cache.set(dataTypeCacheKey,defaultDataTypeValue)
+    $cache.set(spokenCacheKey,defaultSpokenValue)
+    $cache.set(programLanguageCacheKey,defaultProgramLanguageValue);
+    render()
+    
+    $('sinceButton').title = $cache.get(sinceCacheKey);
+    loadTrendingData()
+}

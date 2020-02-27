@@ -1,4 +1,4 @@
-var colorsJsonObject = {
+const colorsJsonObject = {
     "1C Enterprise": {
         "color": "#814CCC",
         "url": "https://github.com/trending?l=1C-Enterprise"
@@ -1484,6 +1484,31 @@ var colorsJsonObject = {
     }
 }
 
+exports.orange = $('#e36209')
+exports.blue = $('#0366d6')
+exports.lightGray = $color('#f8f8f8')
+exports.gray = $color('#586069')
+exports.transparent = $color('clear')
+
+exports.getBoldFont = (size) => {
+    return $font('bold',size)
+}
+
+exports.getFont = (size) => {
+    return $font(size)
+}
+
+exports.getColor = (color) => {
+    return $color('color')
+}
+
+exports.getSize = (size) => {
+    return $size(size,size)
+}
+
+exports.getMonoFont = (size) => {
+    return $font('JetBrains Mono',size)
+}
 
 exports.getLangColors = () => {
     var result = new Map()
@@ -1500,7 +1525,11 @@ exports.getProgramLanguages = () => {
     result.set("Chinese", "zh")
     return result;
 }
+
+// Github日历的颜色集合
 exports.calendar = [
     ["#F0F0F0","#ACD5F2","#7FA8C9","#527BA0","#254E77"],
-    ["#F0F0F0","#C6E48B","#7BC96F","#239A3B","#196127"]
+    ["#F0F0F0","#C6E48B","#7BC96F","#239A3B","#196127"],
+    ["#F0F0F0","#9F9DBA","#7F678E",'#6e4C6C','#492D41'],
+    ["#F0F0F0","#EbDC0C","#F3AC19",'#F28F14','#E97311']
 ]

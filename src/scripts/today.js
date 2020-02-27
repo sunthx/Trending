@@ -1,139 +1,97 @@
-const api = require("./api");
-const colors = require("./resources")
-const calendar = colors.calendar
-const MonoFont = $font('JetBrains Mono',18)
-const configFile = "setting.conf"
+const api = require("./api")
+const config = require("./config")
+const resources = require("./resources")
+const calendar = resources.calendar
+var _isInitialized = false
 
-var isInitialized = false
-
-const operationButtons =[
-    {
-        type: "button",
-        props:{
-            id:"btnReset",
-            title: "Reset  ",
-            font: MonoFont,
-            bgcolor: $color('#0366d6'),
-            icon: $icon("030", $color('white'), $size(16,16)),
-            contentEdgeInsets: $insets(10, 10, 10, 10),
-            imageEdgeInsets: $insets(0,-10,0,0)
-        },
-        layout: function(make){
-            make.right.left.inset(5)
-            make.width.equalTo(100)
-            make.top.equalTo($('csCal').bottom).offset(15)
-        },
-        events:{
-            tapped: function(){
-                $device.taptic(0)
-                clearGithubUserName()
-                refresh()
-            }
-        }
-    },
-    {
-        type: "button",
-        props: {
-            id: "btnSetUserName",
-            title: "Refresh",
-            font: MonoFont,
-            bgcolor: $color('#0366d6'),
-            icon: $icon("162", $color('white'), $size(16,16)),
-            contentEdgeInsets: $insets(10, 10, 10, 10),
-            imageEdgeInsets: $insets(0,-10,0,0)
-        },
-        layout: function(make){
-            make.right.left.inset(5)
-            make.top.equalTo($('btnReset').bottom).offset(10) 
-        },
-        events:{
-            tapped: function(){
-                $device.taptic(0)
-                refresh()
-            }
-        }
-            
-    }];
-
+// 绘制 Github 日历
 function renderGithubCalendar(data) {
     $ui.render({
-        type:"view",
-        props:{
-            id:"mainView"
+        type: "view",
+        props: {
+            id: "mainView",
         },
         layout: $layout.fill,
-        views:[],
-        events:{
-            appeared: function() {
+        events: {
+            appeared: function () {
                 var mainView = $('mainView')
-                drawToView(mainView.super.size.width,mainView,data)
-
-                operationButtons.forEach(function(item){
-                    $('mainView').add(item)
-                })
-                
+                drawToView(mainView.super.size.width, mainView, data)
             }
         }
     })
 }
 
-function drawToView(canvasWidth,view,data){
-    var insetTopBottom = 0
-    var insetLeftRight = 5
+function drawCalendarItem(x, y, w, h, r, color, ctx) {
+    ctx.moveToPoint(w + x, h + y - r)
+
+    //右下角
+    ctx.addArcToPoint(w + x, h + y, w + x - r, h + y, r)
+
+    //左下角
+    ctx.addArcToPoint(0 + x, h + y, x, h + y - r, r)
+
+    //左上角
+    ctx.addArcToPoint(x, y, r + x, y, r)
+
+    //右上角
+    ctx.addArcToPoint(w + x, y, w + x, r + y, r)
+
+    ctx.closePath()
+
+    ctx.fillColor = $color(color)
+    ctx.fillPath()
+}
+
+function drawToView(canvasWidth, view, data) {
+    var insetTopBottom = 5
+    var insetLeftRight = 1
     var defaultSquareWidth = 12
-    var defaultSpacing = 1.5
+    var defaultSpacing = 2
+    var defaultRadius = 5
 
     canvasWidth = canvasWidth - 2 * insetLeftRight
     var maxN = (canvasWidth - defaultSpacing) / (defaultSquareWidth + defaultSpacing)
     var squareWidth = (canvasWidth - maxN - 1) / maxN
-    
+
     var columnNumber = parseInt(maxN)
     var spacing = (canvasWidth - (columnNumber * squareWidth)) / (columnNumber + 1)
     var matrixHeight = 7 * squareWidth + 8 * spacing + 2 * insetTopBottom
     var rowNumber = 7
 
-    var canvas = {
+    var lastWeekday = data[0].weekday
+    var total = columnNumber * rowNumber - (6 - lastWeekday)
+    data = data.slice(0, total).reverse()
+
+    var startX = insetLeftRight
+    var startY = insetTopBottom
+    var curX = 0
+    var curY = 0
+    var index = 0
+
+    var colorIndex = Math.floor(Math.random() * Math.floor(calendar.length))
+    var currentColor = calendar[colorIndex]
+    curX = spacing + startX
+
+    let canvas = {
         type: "canvas",
         props:{
-            id:"csCal"
+            id: "calendar"
         },
         layout: function(make,view){
-            make.right.left.insets(0)
             make.height.equalTo(matrixHeight)
+            make.left.right.insets(0)
         },
-        events: {
-            draw: function (view, ctx) {
-                var lastWeekday = data[0].weekday
-                var total = columnNumber * rowNumber - (6 - lastWeekday)
-                data = data.slice(0,total).reverse()
-            
-                var startX = insetLeftRight
-                var startY = insetTopBottom
-                var curX = 0
-                var curY = 0
-                var index = 0
-            
-                var colorIndex = Math.floor(Math.random()*Math.floor(calendar.length))
-                var currentColor = calendar[colorIndex]
-                curX = spacing + startX
+        events:{
+            draw: function(view,ctx){
                 for (let colIndex = 0; colIndex < columnNumber; colIndex++) {
                     curY = spacing + startY
                     for (let rowIndex = 0; rowIndex < rowNumber; rowIndex++) {
-                        if(index == data.length)
-                            return
+                        if (index == data.length)
+                            break
             
-                        var rect = { 
-                            x: curX, 
-                            y: curY, 
-                            width: squareWidth, 
-                            height: squareWidth
-                        }
-            
-                        var colorValue = currentColor[data[index].level]
-                        ctx.fillColor = $color(colorValue)
-                        ctx.fillRect(rect)
-                        ctx.addRect(rect)
-            
+                        var datalevel = data[index].level
+                        var colorValue = currentColor[datalevel]
+                        drawCalendarItem(curX, curY, squareWidth, squareWidth, defaultRadius, colorValue,ctx)
                         curY += squareWidth + spacing
                         index++
                     }
@@ -148,112 +106,66 @@ function drawToView(canvasWidth,view,data){
 }
 
 async function loadGithubCalendar(userName) {
-    if(userName == null || userName == "") {
+    if (userName == null || userName == "") {
         return null
     }
 
     $ui.loading(true)
-    var data =  await api.getContributionData(userName)
+    var data = await api.getContributionData(userName)
     $ui.loading(false)
     renderGithubCalendar(data)
-    isInitialized = true
+    _isInitialized = true
 }
 
-function getGithubUserNameFromConfigFile() {
-    var file = $file.read(configFile)
-    return (typeof file == "undefined") ? "" : file.string
-}
-
-function setGithubUserName(userName){
-    $file.write({
-        data: $data({string: userName}),
-        path: configFile
-    });
-}
-
-function clearGithubUserName(){
-    $file.write({
-        data: $data({string: ""}),
-        path: configFile
-    }); 
-}
-
-function init(){
-    var userName = getGithubUserNameFromConfigFile()
-    if(userName == ""){
+function init() {
+    var userName = config.getUserName()
+    if (userName == "") {
         $ui.render({
             props: {
                 title: ""
             },
             views: [
                 {
-                    type:"label",
-                    props:{
-                        id:"lbMsg",
-                        font: $font('JetBrains Mono',14),
-                        text:"System.NullReferenceException: Object reference not set to an instance of an object.",
-                        align: $align.center,
-                        lines:999
+                    type: "button",
+                    props: {
+                        id: "btnSetUserName",
+                        title: $l10n("NOT_SET_USERNAME"),
+                        font: resources.getMonoFont(14),
+                        bgcolor: resources.transparent,
+                        titleColor: resources.getColor('black')
                     },
-                    layout: function(make,view){
-                        make.top.insets(5)
-                        make.right.left.insets(10)
-                    }
-                },
-                {
-                type: "button",
-                props: {
-                    id: "btnSetUserName",
-                    title: "FIX",
-                    font: $font('JetBrains Mono',18),
-                    icon: $icon("052", $color('white'), $size(16,16)),
-                    contentEdgeInsets: $insets(10, 10, 10, 10),
-                    imageEdgeInsets: $insets(0,-10,0,0)
-                },
-                layout: function(make){
-                    make.top.equalTo($('lbMsg').bottom).offset(5)
-                    make.right.left.insets(10)
-                },
-                events: {
-                    tapped: function(){
-                        $input.text({
-                            type: "input",
-                            placeholder: "github.username = ?",
-                            handler: function(text) {
-                                if(text == ""){
+                    layout: $layout.fill,
+                    events: {
+                        tapped: function () {
+                            $input.text({
+                                type: "input",
+                                placeholder: "",
+                                handler: function (text) {
+                                    if (text == "") {
+                                        $ui.alert({
+                                            title: $l10n("MSG_ERROR"),
+                                            message: $l10n("MSG_ERROR_USERNAME_EMPTY"),
+                                        });
+                                        return;
+                                    }
+
+                                    setGithubUserName(text)
+
                                     $ui.alert({
-                                        title: "ERROR",
-                                        message: "Github.UserName = NULL",
+                                        title: $l10n("MSG_SUCCEED"),
+                                        message: $l10n("MSG_SETTING_OK") + text,
                                     });
-                                    return;
+
+                                    loadGithubCalendar(text)
                                 }
-        
-                                setGithubUserName(text)
-                                
-                                $ui.alert({
-                                    title: "SUCCEED",
-                                    message: "Github.UserName = " + text,
-                                });
-    
-                                loadGithubCalendar(text)
-                            }
-                        });
+                            });
+                        }
                     }
-                }
-            }]
-        });    
+                }]
+        });
     } else {
         loadGithubCalendar(userName)
     }
-
-    $widget.height = 100
 }
 
-function refresh(){
-    $('mainView').remove()
-    init()
-}
-
-init()
-
-
+exports.startup = init

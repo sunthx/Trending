@@ -1,2 +1,9 @@
-"SET_GITHUB_NAME" = "用户名";
-"SAVE" = "保存";
+"NOT_SET_USERNAME" = "未配置 Github 用户名";
+"WM_USERNAME" = "github.username = ?";
+"MSG_ERROR" = "错误";
+"MSG_SUCCEED" = "成功";
+"MSG_SETTING_OK" = "设置成功，用户名为：";
+"MSG_ERROR_USERNAME_EMPTY" = "用户名不能为空";
+
+"TRENDING_TITLE" = "Trending";
+"TRENDING_DESC" = "See what the GitHub community is most excited about today.";

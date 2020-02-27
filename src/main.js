@@ -1,8 +1,11 @@
-if ($app.env == $env.today) {
-    var app = require('scripts/today')
-}else if ($app.env == $env.app){
-    var app = require('scripts/app')
-}
+const updater = require('scripts/updater')
+const app = $app.env == $env.today ? require('scripts/today') : require('scripts/app')
 
-var updater = require('scripts/updater')
+// 启动调试信息
+$console.clear();
+
+// 启动
+app.startup()
+
+// 启动更新
 updater.check()

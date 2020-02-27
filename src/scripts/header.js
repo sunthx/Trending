@@ -1,3 +1,5 @@
+const resources = require('./resources')
+
 exports.header = {
     type: "view",
     layout: function (make, view) {
@@ -7,25 +9,25 @@ exports.header = {
     },
     props: {
         id: "header",
-        bgcolor: $color("#f8f8f8")
+        bgcolor: resources.lightGray
     },
     views: [{
         type: "label",
         props: {
             id: "lbTitle",
-            text: "Trending",
+            text: $l10n("TRENDING_TITLE"),
             align: $align.center,
-            font: $font("JetBrains Mono",18)
+            font: resources.getMonoFont(18)
         },
         layout: $layout.center
     },
     {
         type: "label",
         props: {
-            text: "See what the GitHub community is most excited about today.",
+            text: $l10n("TRENDING_DESC"),
             align: $align.center,
-            font: $font("JetBrains Mono",14),
-            textColor: $color('#586069'),
+            font: resources.getMonoFont(14),
+            textColor: resources.gray,
             lines: 2
         },
         layout: function (make, view) {
