@@ -1,6 +1,7 @@
 const resources = require('./resources')
 const config = require('./config')
 const api = require('./api')
+const version = config.getVersion()
 
 exports.header = {
     type: "view",
@@ -35,6 +36,20 @@ exports.header = {
                 let icon = $('imgAppIcon')
                 make.left.equalTo(icon.right).offset(10)
                 make.top.equalTo(icon.top).offset(3)
+            }
+        },
+        {
+            type: "label",
+            props: {
+                id: "lbVersion",
+                text: version,
+                textColor: resources.drakgray,
+                font: resources.getMonoFont(12)
+            },
+            layout: function (make) {
+                let title = $('lbTitle')
+                make.left.equalTo(title.right).offset(6)
+                make.top.equalTo(title.top).offset(7)
             }
         }
     ]

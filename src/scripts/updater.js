@@ -1,4 +1,5 @@
 const api = require('./api')
+const config = require('./config')
 
 exports.check = async () => {
     var info = await api.getInfo()
@@ -6,7 +7,7 @@ exports.check = async () => {
         return
     }
 
-    var version = $file.read("version.conf").string;
+    var version = config.getVersion()
     if(version == info.version){
         return
     }

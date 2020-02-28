@@ -1,5 +1,6 @@
 const configFile = "shared://trending_setting.conf"
 const defaultFile = "trending_setting.conf"
+const versionFile = "version.conf"
 
 function check() {
     var exists = $file.exists(configFile)
@@ -31,4 +32,8 @@ exports.clearUserName = function() {
         data: $data({ string: "" }),
         path: configFile
     });
+}
+
+exports.getVersion = ()=> {
+    return $file.read("version.conf").string;
 }
