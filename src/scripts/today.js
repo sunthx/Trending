@@ -132,7 +132,7 @@ function init() {
                         title: $l10n("NOT_SET_USERNAME"),
                         font: resources.getMonoFont(14),
                         bgcolor: resources.transparent,
-                        titleColor: resources.getColor('black')
+                        titleColor: resources.white
                     },
                     layout: $layout.fill,
                     events: {
