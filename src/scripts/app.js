@@ -1,5 +1,5 @@
 const header = require("./header").header
-const templates = require("./list_view_template")
+const templates = require("./list-view-item-template")
 const api = require("./api")
 const resouces = require("./resources")
 
@@ -179,7 +179,7 @@ async function loadTrendingData() {
     var type = $cache.get(dataTypeCacheKey);
 
     list.startLoading()
-    const res = await api.getTrendingData(since,spoken,programLang,type);
+    const res = await api.getTrendingData(since,spoken,programLang,type)
     list.stopLoading()
 
     list.data = res
@@ -207,7 +207,8 @@ async function render() {
         props: {
             id: "mainView",
             navBarHidden: true,
-            statusBarStyle: 0
+            statusBarStyle: 0,
+            bgcolor: resouces.lightGray
         },
         views: [
             header,

@@ -3,36 +3,36 @@ const resources = require('./resources')
 exports.header = {
     type: "view",
     layout: function (make, view) {
-        make.height.equalTo(100)
+        make.height.equalTo(60)
         make.top.left.right.inset(0)
-        make.width.equalTo(view.super)
     },
     props: {
         id: "header",
-        bgcolor: resources.lightGray
+        bgcolor: resources.white
     },
-    views: [{
+    views: [
+        {
+            type: "image",
+            props: {
+                id:"imgAppIcon",
+                icon: $icon('177', resources.black, resources.getSize(30))
+            },
+            layout: function (make) {
+                make.top.inset(20)
+                make.left.inset(20)
+            }
+        },
+        {
         type: "label",
         props: {
             id: "lbTitle",
             text: $l10n("TRENDING_TITLE"),
-            align: $align.center,
             font: resources.getMonoFont(18)
         },
-        layout: $layout.center
-    },
-    {
-        type: "label",
-        props: {
-            text: $l10n("TRENDING_DESC"),
-            align: $align.center,
-            font: resources.getMonoFont(14),
-            textColor: resources.gray,
-            lines: 2
-        },
-        layout: function (make, view) {
-            make.top.equalTo($('lbTitle').bottom)
-            make.width.equalTo(view.super)
+        layout: function(make){
+            let icon = $('imgAppIcon')
+            make.left.equalTo(icon.right).offset(10)
+            make.top.equalTo(icon.top).offset(3)
         }
     }]
 }

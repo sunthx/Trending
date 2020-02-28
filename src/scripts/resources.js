@@ -1484,11 +1484,14 @@ const colorsJsonObject = {
     }
 }
 
-exports.orange = $('#e36209')
-exports.blue = $('#0366d6')
+exports.black = $color('black')
+exports.white = $color('white')
+exports.orange = $color('#e36209')
+exports.blue = $color('#0366d6')
 exports.lightGray = $color('#f8f8f8')
 exports.gray = $color('#586069')
 exports.transparent = $color('clear')
+exports.deviceWidth = $device.info.screen.width
 
 exports.getBoldFont = (size) => {
     return $font('bold',size)

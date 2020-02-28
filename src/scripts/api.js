@@ -89,13 +89,15 @@ function repoTrendDataParser(item) {
     var array = item.name.split('/')
     var repo = {
         name: { text: array[2] },
-        author: {title: "@"+array[1]},
+        author: {text: "@"+array[1]},
         lang: { text: item.lang },
         description: { text: item.description.replace(/<g-emoji [\s\S]*?>|<\/g-emoji>|<a[\s\S]*?>|<\/a>/g, "") },
         star: { text: item.star },
         fork: { text: item.fork },
         langColor:{bgcolor: null},
-        url: item.url
+        url: item.url,
+        avatar: { src: item.avatar},
+        today:{text: "+"+item.star_today}
     }
 
     var langColor = langColors.get(item.lang)
