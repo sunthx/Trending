@@ -7,3 +7,12 @@
 
 "TRENDING_TITLE" = "Trending";
 "TRENDING_DESC" = "See what the GitHub community is most excited about today.";
+
+"DEFAULT_CONDITION" = "Default";
+
+"DAILY" = "Daily";
+"WEEKLY" = "Weekly";
+"MONTHLY" = "Monthly";
+
+"NOT_SET_USER_NAME" = "设置用户名";
+"RESET_USER_NAME" = "重置成功";

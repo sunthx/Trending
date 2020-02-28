@@ -1,13 +1,15 @@
-const header = require("./header").header
-const templates = require("./list-view-item-template")
+const header = require("./header")
+const repoListTemplate = require("./repo-list")
+const rankListTemplate = require("./rank-list")
 const api = require("./api")
-const resouces = require("./resources")
+const resources = require("./resources")
+const config = require('./config')
 
-const repoList = templates.repoList
-const developerList = templates.developerList
+const repoList = repoListTemplate.repoList
+const developerList = rankListTemplate.developerList
 
-const programLanguages = resouces.getProgramLanguages() 
-const langColors = resouces.getLangColors()
+const programLanguages = resources.getProgramLanguages() 
+const langColors = resources.getLangColors()
 
 const dataTypeCacheKey = "type"
 const sinceCacheKey = "since"
@@ -19,62 +21,56 @@ const defaultSinceValue = "Daily"
 const defaultSpokenValue = ""
 const defaultProgramLanguageValue = ""
 
+const conditionButtonSize = $size(80,25)
+
 var menu = {
     type: "view",
     props: {
         id:"menu",
-        bgcolor: resouces.transparent
+        bgcolor: resources.transparent
     },
     layout: function (make, view) {
         var headerView = $('header')
         make.left.right.inset(0)
-        make.height.equalTo(50)
+        make.height.equalTo(35)
         make.top.equalTo(headerView.bottom)
     },
     views: [
         {
-            type: "tab",
-            layout: function (make, view) {
-                make.left.top.inset(10)
-            },
-            props: {
-                id: "menuTab",
-                items: ["Repo", "Rank"],
-                tintColor: resouces.gray,
-            },
-            events: {
-                changed: trendingTypeChanged
-            }
-        },
-        {
             type: "button",
             props: {
-                id:"spokenButton",
-                bgcolor: resouces.gray,
-                title: "ALL",
-                font: $font(12)
+                id: "sinceButton",
+                bgcolor: resources.gray,
+                font: resources.getMonoFont(10),
+                title: $l10n("DEFAULT_CONDITION"),
+                icon: $icon("029", resources.drakgray, resources.getSize(12)),
+                imageEdgeInsets: $insets(0, 0, 0, 10),
+                titleColor: resources.drakgray,
             },
-            layout: function(make){
-                make.top.inset(10)
-                make.size.equalTo($size(60,30))
-                make.right.inset(140)
+            layout: function (make) {
+                make.top.inset(5)
+                make.left.inset(10)
+                make.size.equalTo(conditionButtonSize)
             },
             events:{
-                tapped: spokenLangButtonClicked
+                tapped: sinceButtonClicked
             }
         },
         {
             type: "button",
             props: {
                 id:"langButton",
-                bgcolor: resouces.gray,
-                title: "ALL",
-                font: $font(12)
+                bgcolor: resources.gray,
+                font: resources.getMonoFont(10),
+                title: $l10n("DEFAULT_CONDITION"),
+                titleColor: resources.drakgray,
+                icon: $icon("119", resources.drakgray, resources.getSize(12)),
+                imageEdgeInsets: $insets(0, 0, 0, 10),
             },
             layout: function(make){
-                make.top.inset(10)
-                make.size.equalTo($size(60,30))
-                make.right.inset(75)
+                make.top.equalTo($('sinceButton').top)
+                make.left.equalTo($('sinceButton').right).offset(10)
+                make.size.equalTo(conditionButtonSize)
             },
             events:{
                 tapped: programLangButtonClicked
@@ -83,26 +79,30 @@ var menu = {
         {
             type: "button",
             props: {
-                id: "sinceButton",
-                bgcolor: resouces.gray,
-                font: $font(12)
+                id:"spokenButton",
+                bgcolor: resources.gray,
+                font: resources.getMonoFont(10),
+                title: $l10n("DEFAULT_CONDITION"),
+                icon: $icon("053", resources.drakgray, resources.getSize(12)),
+                imageEdgeInsets: $insets(0, 0, 0, 10),
+                titleColor: resources.drakgray,
             },
-            layout: function (make) {
-                make.top.inset(10)
-                make.right.inset(10)
-                make.size.equalTo($size(60, 30))
+            layout: function(make){
+                make.top.equalTo($('langButton').top)
+                make.left.equalTo($('langButton').right).offset(10)
+                make.size.equalTo(conditionButtonSize)
             },
             events:{
-                tapped: sinceButtonClicked
+                tapped: spokenLangButtonClicked
             }
         }
     ]
 }
 
 function spokenLangButtonClicked(){
-    $device.taptic(0)
+    resources.taptic()
     var items = []
-    items.push("ALL")
+    items.push($l10n("DEFAULT_CONDITION"))
 
     for(let item of programLanguages.keys()) {
         items.push(item)
@@ -114,16 +114,16 @@ function spokenLangButtonClicked(){
             var spokenButton = $("spokenButton")
             spokenButton.title = title
 
-            $cache.set(spokenCacheKey,title == "ALL" ? "" : programLanguages.get(title));
+            $cache.set(spokenCacheKey,title == $l10n("DEFAULT_CONDITION") ? "" : programLanguages.get(title));
             loadTrendingData()
         }
     });
 }
 
 function programLangButtonClicked(){
-    $device.taptic(0)
+    resources.taptic()
     var items = []
-    items.push("ALL")
+    items.push($l10n("DEFAULT_CONDITION"))
 
     for(let item of langColors.keys()) {
         items.push(item)
@@ -134,16 +134,16 @@ function programLangButtonClicked(){
         handler: function(title, idx) {
             var langButton = $("langButton")
             langButton.title = title
-            $cache.set(programLanguageCacheKey, title == "ALL" ? "" : title);
+            $cache.set(programLanguageCacheKey, title == $l10n("DEFAULT_CONDITION") ? "": title);
             loadTrendingData()
         }
     });
 }
 
 function sinceButtonClicked(){
-    $device.taptic(0)
+    resources.taptic()
     $ui.menu({
-        items: ["Daily","Weekly","Monthly"],
+        items: [$l10n("DEFAULT_CONDITION"),$l10n("DAILY"),$l10n("WEEKLY"),$l10n("MONTHLY")],
         handler: sinceMenuSelected
     });
 }
@@ -156,7 +156,7 @@ function sinceMenuSelected(title,idx){
 
     var sinceButton = $("sinceButton")
     sinceButton.title = title
-    $cache.set(sinceCacheKey, title);
+    $cache.set(sinceCacheKey, title == $l10n("DEFAULT_CONDITION") ? $l10n("DAILY") : title)
     loadTrendingData()
 }
 
@@ -186,7 +186,7 @@ async function loadTrendingData() {
 }
 
 function ChangeTreandDataView() {
-    $device.taptic(0)
+    resources.taptic()
     var dataType = $cache.get(dataTypeCacheKey);
     var mainView = $("mainView")
     if(dataType == defaultDataTypeValue){
@@ -208,10 +208,10 @@ async function render() {
             id: "mainView",
             navBarHidden: true,
             statusBarStyle: 0,
-            bgcolor: resouces.lightGray
+            bgcolor: $color("#e9e9e9")
         },
         views: [
-            header,
+            header.header,
             menu,
             repoList
         ]
@@ -227,6 +227,13 @@ exports.startup = ()=>{
     $cache.set(programLanguageCacheKey,defaultProgramLanguageValue);
     render()
     
-    $('sinceButton').title = $cache.get(sinceCacheKey);
     loadTrendingData()
+
+    var userName = config.getUserName()
+    if(userName == ""){
+        header.showSettingButton()
+    } else {
+        header.showAvatar(userName)
+    }
+        
 }

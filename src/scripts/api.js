@@ -1,11 +1,32 @@
 let host = "http://api.trending.sunth.cn/";
 let trendingRequestUrl = host + "trending";
+let userRequestUrl = host + "user?name="
 let developerTrendingRequestUrl = trendingRequestUrl+ "/developers"
 let contributionRequestUrl = host + "contributions?user="
 
 const crypto = require('crypto-js')
 const source = crypto.SHA256($device.info).toString()
-const langColors = require('./resources').getLangColors()
+const resources = require('./resources')
+const langColors = resources.getLangColors()
+
+exports.getUser = async (name) => {
+    if(name == ""){
+        return
+    }
+
+    var resp = await $http.get(userRequestUrl + name)
+    var respContent = resp.data
+    if(respContent.code != 200) {
+        return null
+    }
+
+    return {
+        name: respContent.data.name,
+        nickname: respContent.data.nick_name,
+        avatar: resources.formatAvatarUrl(respContent.data.avatar,120),
+        website: respContent.data.website
+    }
+}
 
 exports.getInfo = async () => {
     var url = "https://raw.githubusercontent.com/sunthx/jsbox-github-trending/master/update.json"
@@ -96,9 +117,11 @@ function repoTrendDataParser(item) {
         fork: { text: item.fork },
         langColor:{bgcolor: null},
         url: item.url,
-        avatar: { src: item.avatar},
+        avatar: { src: resources.formatAvatarUrl(item.avatar,120)},
         today:{text: "+"+item.star_today}
     }
+
+    $console.warn(repo.avatar);
 
     var langColor = langColors.get(item.lang)
     var colorValue = "black"

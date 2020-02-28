@@ -149,7 +149,7 @@ function init() {
                                         return;
                                     }
 
-                                    setGithubUserName(text)
+                                    config.setUserName(text)
 
                                     $ui.alert({
                                         title: $l10n("MSG_SUCCEED"),

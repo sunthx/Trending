@@ -1489,9 +1489,9 @@ exports.white = $color('white')
 exports.orange = $color('#e36209')
 exports.blue = $color('#0366d6')
 exports.lightGray = $color('#f8f8f8')
-exports.gray = $color('#586069')
+exports.gray = $color('#d3d3d3')
+exports.drakgray = $color('#808080')
 exports.transparent = $color('clear')
-exports.deviceWidth = $device.info.screen.width
 
 exports.getBoldFont = (size) => {
     return $font('bold',size)
@@ -1536,3 +1536,31 @@ exports.calendar = [
     ["#F0F0F0","#9F9DBA","#7F678E",'#6e4C6C','#492D41'],
     ["#F0F0F0","#EbDC0C","#F3AC19",'#F28F14','#E97311']
 ]
+
+exports.taptic = ()=>{
+    $device.taptic(3)
+}
+
+exports.openUrl =(title, url) => {
+    $ui.push({
+        props: {
+            title: title
+        },
+        views: [{
+            type: "web",
+            props: {
+                title: title,
+                text: title,
+                url: url
+            },
+            layout: $layout.fill
+        }]
+    })
+}
+
+exports.formatAvatarUrl = (url,size) => {
+    //https://avatars3.githubusercontent.com/u/10217485?s=460&amp;v=4",
+    //https://avatars3.githubusercontent.com/u/10217485
+    let index = url.lastIndexOf('?')
+    return url.substring(0,index) + "?s=" +size
+}
