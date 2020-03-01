@@ -8,8 +8,9 @@ const config = require('./config')
 const repoList = repoListTemplate.repoList
 const developerList = rankListTemplate.developerList
 
-const programLanguages = resources.getProgramLanguages() 
+const spokenLangs = resources.getSpokenLangs() 
 const langColors = resources.getLangColors()
+const programLangs = resources.getProgramLangs()
 
 const dataTypeCacheKey = "type"
 const sinceCacheKey = "since"
@@ -104,7 +105,7 @@ function spokenLangButtonClicked(){
     var items = []
     items.push($l10n("DEFAULT_CONDITION"))
 
-    for(let item of programLanguages.keys()) {
+    for(let item of spokenLangs.keys()) {
         items.push(item)
     }
 
@@ -114,7 +115,7 @@ function spokenLangButtonClicked(){
             var spokenButton = $("spokenButton")
             spokenButton.title = title
 
-            $cache.set(spokenCacheKey,title == $l10n("DEFAULT_CONDITION") ? "" : programLanguages.get(title));
+            $cache.set(spokenCacheKey,title == $l10n("DEFAULT_CONDITION") ? "" : spokenLangs.get(title));
             loadTrendingData()
         }
     });
@@ -125,7 +126,7 @@ function programLangButtonClicked(){
     var items = []
     items.push($l10n("DEFAULT_CONDITION"))
 
-    for(let item of langColors.keys()) {
+    for(let item of programLangs) {
         items.push(item)
     }
 

@@ -1484,6 +1484,27 @@ const colorsJsonObject = {
     }
 }
 
+const programLangs = [
+    "Java",
+    "C",
+    "Python",
+    "C++",
+    "C#",
+    "Visual Basic",
+    "JavaScript",
+    "PHP",
+    "Swift",
+    "Go",
+    "R",
+    "D",
+    "Perl",
+    "Objective-C",
+    "Rust",
+    "Julia",
+    "Kotlin",
+    "Lua"
+];
+
 exports.black = $color('black')
 exports.white = $color('white')
 exports.orange = $color('#e36209')
@@ -1522,7 +1543,11 @@ exports.getLangColors = () => {
     return result;
 }
 
-exports.getProgramLanguages = () => {
+exports.getProgramLangs = () =>{
+    return programLangs
+}
+
+exports.getSpokenLangs = () => {
     var result = new Map()
     result.set("English", "en")
     result.set("Chinese", "zh")
