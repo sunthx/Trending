@@ -169,7 +169,7 @@ const repoList = {
         id: "list",
         bgcolor: resources.transparent,
         separatorHidden: true,
-        selectable: true,
+        selectable: false,
         rowHeight: 100,
         template: {
             type: "view",
@@ -183,7 +183,7 @@ const repoList = {
                         bgcolor: resources.white,
                         circular: true,
                         smoothRadius:3,
-                        shadowColor: resources.orange
+                        shadowColor: resources.orange,
                     },
                     layout:function(make,view){
                         make.height.equalTo(90)
@@ -196,7 +196,11 @@ const repoList = {
     },
     layout: layout,
     events: {
-        didSelect: repolistClicked
+        didSelect: repolistClicked,
+        didLongPress: function(sender, indexPath, data) {
+            var data = sender.object(indexPath)
+            $share.sheet([data.url])
+        }
     }
 }
 
