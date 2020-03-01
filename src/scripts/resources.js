@@ -1589,3 +1589,16 @@ exports.formatAvatarUrl = (url,size) => {
     let index = url.lastIndexOf('?')
     return url.substring(0,index) + "?s=" +size
 }
+
+const cacheKey = {
+    dataTypeCacheKey : "type",
+    sinceCacheKey : "since",
+    spokenCacheKey : "spoken",
+    programLanguageCacheKey : "programLanguage",
+    defaultDataTypeValue : "repo",
+    defaultSinceValue : "Daily",
+    defaultSpokenValue : "",
+    defaultProgramLanguageValue : ""
+}
+
+exports.cacheKey = cacheKey
