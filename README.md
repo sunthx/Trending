@@ -1,5 +1,8 @@
-## [JSBox] Gayhub “打卡”记录
+## [JSBox] Trending
 
-![](images/screenshot.png)
+[Install](https://xteko.com/redir?name=trending-jsbox&url=http://q659q2a7i.bkt.clouddn.com/trending-jsbox.zip)
 
-[Download](https://xteko.com/redir?name=jsbox-github-contri&icon=177&url=https://raw.githubusercontent.com/sunthx/jsbox-github-contri/1.0.0.0/.output/jsbox-github-contri.box)
+> Power By JSBox 2.0
+
+<img src="http://q659q2a7i.bkt.clouddn.com/1.PNG" width="300"/>
+<img src="http://q659q2a7i.bkt.clouddn.com/2.PNG" width="300"/>
