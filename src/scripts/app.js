@@ -149,11 +149,6 @@ function sinceButtonClicked(){
 }
 
 function sinceMenuSelected(title,idx){
-    var currentSince = $cache.get(sinceCacheKey)
-    if(currentSince == title){
-        return
-    }
-
     var sinceButton = $("sinceButton")
     sinceButton.title = title
     $cache.set(sinceCacheKey, title == $l10n("DEFAULT_CONDITION") ? $l10n("DAILY") : title)
