@@ -174,12 +174,13 @@ const repoList = {
         template: {
             type: "view",
             props:{
-                bgcolor: resources.transparent
+                bgcolor: resources.transparent,
             },
             views:[
                 {
                     type:"view",
                     props:{
+                        id:"itemTemplate",
                         bgcolor: resources.white,
                         circular: true,
                         smoothRadius:3,
@@ -194,7 +195,11 @@ const repoList = {
             ],
         }
     },
-    layout: layout,
+    layout: function(make,view){
+        make.top.equalTo($('menu').bottom)
+        make.right.left.inset(0)
+        make.bottom.equalTo($('navMenu').top)
+    },
     events: {
         didSelect: repolistClicked,
         didLongPress: function(sender, indexPath, data) {
@@ -204,17 +209,11 @@ const repoList = {
     }
 }
 
+function repolistClicked(sender, indexPath,data) {
+    resources.openUrl(data.name.text, data.url)
+}
 
 exports.repoList = repoList
 
-function layout(make, view) {
-    make.top.equalTo($('menu').bottom)
-    make.right.left.inset(0)
-    make.bottom.inset(0)
-}
 
-function repolistClicked(tableView, indexPath) {
-    var data = tableView.object(indexPath)
-    resources.openUrl(data.name.text, data.url)
-}
 
