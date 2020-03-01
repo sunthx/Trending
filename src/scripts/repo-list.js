@@ -6,7 +6,8 @@ const repoDetailView = [
         type: "image",
         props: {
             id: "avatar",
-            circular: true
+            circular: true,
+            bgcolor: resources.lightGray,
         },
         layout: function (make, view) {
             make.size.equalTo(resources.getSize(30))
