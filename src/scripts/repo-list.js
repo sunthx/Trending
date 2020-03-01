@@ -169,7 +169,7 @@ const repoList = {
         id: "list",
         bgcolor: resources.transparent,
         separatorHidden: true,
-        selectable: false,
+        selectable: true,
         rowHeight: 100,
         template: {
             type: "view",
