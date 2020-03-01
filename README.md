@@ -1,8 +1,16 @@
-## [JSBox] Trending
+# Trending 
 
-[Install](https://xteko.com/redir?name=trending-jsbox&url=http://q659q2a7i.bkt.clouddn.com/Trending-2.0.5.zip)
+> Power By [JSBox 2.0](https://itunes.apple.com/cn/app/id1312014438)
 
-> Power By JSBox 2.0
+[try,try,try!](https://xteko.com/redir?name=Trending&url=http://q659q2a7i.bkt.clouddn.com/Trending-2.0.5.zip)
 
-<img src="http://q659q2a7i.bkt.clouddn.com/1.PNG" width="300"/>
-<img src="http://q659q2a7i.bkt.clouddn.com/2.PNG" width="300"/>
+## Todo 
+
+- [ ] Topic
+- [ ] Favorite
+- [ ] Setting
+
+## ScreenShot
+
+<img src="http://q659q2a7i.bkt.clouddn.com/1.PNG" width="250"/>
+<img src="http://q659q2a7i.bkt.clouddn.com/2.PNG" width="250"/>
