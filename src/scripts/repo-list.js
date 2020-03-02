@@ -42,6 +42,23 @@ const repoDetailView = [
         }
     },
     {
+        type: "button",
+        props:{
+            bgcolor: resources.transparent,
+            icon: $icon('120',resources.gray,resources.getSize(20))
+        },
+        layout: function(make,view) {
+            make.top.equalTo(0)
+            make.size.equalTo(resources.getSize(40))
+            make.right.inset(0)
+        },
+        events: {
+            tapped: function(view){
+                $console.warn(view);
+            },
+        }
+    },
+    {
         type: "label",
         props: {
             id: "description",
