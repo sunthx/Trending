@@ -51,8 +51,8 @@ const repoDetailView = [
             align: $align.left
         },
         layout: function (make) {
-            //TODO: 动态计算 
-            make.width.equalTo(300)
+            let width = $device.info.screen.width - 80
+            make.width.equalTo(width)
             make.height.equalTo(30)
             make.left.equalTo($('imgRepoIcon').left)
             make.top.equalTo($('name').bottom).offset(5)
