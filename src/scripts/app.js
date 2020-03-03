@@ -3,6 +3,7 @@ const menu = require('./menu')
 const navMenu = require("./nav-menu")
 const repoList = require("./repo-list").repoList
 const api = require("./api")
+const db = require("./db")
 const cacheKeys = require("./resources").cacheKey
 const config = require('./config')
 
@@ -16,10 +17,10 @@ async function loadTrendingData() {
     var type = $cache.get(cacheKeys.dataTypeCacheKey);
 
     list.startLoading()
-    const res = await api.getTrendingData(since,spoken,programLang,type)
+    const data = await api.getTrendingData(since,spoken,programLang,type)
     list.stopLoading()
 
-    list.data = res
+    list.data = data
 }
 
 async function render() {

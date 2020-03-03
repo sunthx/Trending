@@ -1,5 +1,9 @@
 const resources = require('./resources')
+const db = require('./db')
 const iconSize = resources.getSize(10)
+
+const likedIcon = $icon('120',resources.orange,resources.getSize(20))
+const defaultLikeIcon = $icon('120',resources.gray,resources.getSize(20))
 
 const repoDetailView = [
     {
@@ -44,8 +48,9 @@ const repoDetailView = [
     {
         type: "button",
         props:{
+            id: "like",
             bgcolor: resources.transparent,
-            icon: $icon('120',resources.gray,resources.getSize(20))
+            icon: defaultLikeIcon
         },
         layout: function(make,view) {
             make.top.equalTo(0)
@@ -54,8 +59,18 @@ const repoDetailView = [
         },
         events: {
             tapped: function(view){
-                $console.warn(view);
+                let info = view.info
+                if(db.checkRepoExist(info.data.id)){
+                    db.deleteRepo(info.data.id)
+                    view.icon = defaultLikeIcon
+                } else {
+                    db.addRepo(view.info.data)
+                    view.icon = likedIcon
+                }
             },
+            ready: function(sender) {
+               sender.icon = sender.info.isLiked ? likedIcon : defaultLikeIcon
+            }
         }
     },
     {
