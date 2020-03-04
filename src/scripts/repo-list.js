@@ -64,6 +64,14 @@ const repoDetailView = [
                     data.addRepo(view.info.data)
                     view.icon = resources.icons.liked
                 }
+
+                data.repoListData[info.index].like.icon = view.icon
+
+                let list = $('list')
+                let repoList = list.contentOffset.y
+                list.data = []
+                list.data = data.repoListData
+                list.contentOffset = $point(0, repoList)
             }
         },
     },
