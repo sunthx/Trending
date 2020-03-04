@@ -37,6 +37,9 @@ const repoDetailView = [
             align: $align.left,
         },
         layout: function (make) {
+            let width = $device.info.screen.width - 120
+            make.width.equalTo(width)
+
             let repo = $('imgRepoIcon')
             make.left.equalTo(repo.right).offset(5)
             make.top.equalTo(repo.top).offset(-4)
@@ -51,7 +54,7 @@ const repoDetailView = [
         },
         layout: function (make, view) {
             make.top.equalTo(0)
-            make.size.equalTo(resources.getSize(40))
+            make.size.equalTo(resources.getSize(30))
             make.right.inset(0)
         },
         events: {
@@ -131,7 +134,7 @@ const repoDetailView = [
             icon: $icon("062", resources.black, iconSize)
         },
         layout: function (make) {
-            make.left.equalTo($('lang').right)
+            make.left.equalTo($('lang').right).offset(3)
             make.top.equalTo($('langColor').top).offset(-1)
         }
     },
