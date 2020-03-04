@@ -2,25 +2,21 @@ const header = require("./header")
 const menu = require('./menu')
 const navMenu = require("./nav-menu")
 const repoList = require("./repo-list").repoList
-const api = require("./api")
-const db = require("./db")
-const cacheKeys = require("./resources").cacheKey
+
+const resources = require("./resources")
+const cacheKeys = resources.cacheKey
 const config = require('./config')
+const data = require("./data")
+
 
 async function loadTrendingData() {
-    const list = $("list")
-    list.data = []
-
-    var since = $cache.get(cacheKeys.sinceCacheKey)
-    var spoken = $cache.get(cacheKeys.spokenCacheKey)
-    var programLang = $cache.get(cacheKeys.programLanguageCacheKey)
-    var type = $cache.get(cacheKeys.dataTypeCacheKey);
-
+    let list = $("list")
+    
     list.startLoading()
-    const data = await api.getTrendingData(since,spoken,programLang,type)
+    await data.loadRepoListData()
     list.stopLoading()
 
-    list.data = data
+    list.data = data.repoListData 
 }
 
 async function render() {

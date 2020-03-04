@@ -1505,6 +1505,7 @@ const programLangs = [
     "Lua"
 ];
 
+
 exports.black = $color('black')
 exports.white = $color('white')
 exports.orange = $color('#e36209')
@@ -1598,7 +1599,14 @@ const cacheKey = {
     defaultDataTypeValue : "repo",
     defaultSinceValue : "Daily",
     defaultSpokenValue : "",
-    defaultProgramLanguageValue : ""
+    defaultProgramLanguageValue : "",
+    repoLikeDataListCacheKey : "repo_like_list"
+}
+
+const icon = {
+    liked : $icon('120',$color('#e36209'),$size(20,20)),
+    defaultLike : $icon('120',$color('#d3d3d3'),$size(20,20))
 }
 
 exports.cacheKey = cacheKey
+exports.icons = icon

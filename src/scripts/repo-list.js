@@ -1,9 +1,6 @@
 const resources = require('./resources')
-const db = require('./db')
+const data = require('./data')
 const iconSize = resources.getSize(10)
-
-const likedIcon = $icon('120',resources.orange,resources.getSize(20))
-const defaultLikeIcon = $icon('120',resources.gray,resources.getSize(20))
 
 const repoDetailView = [
     {
@@ -47,31 +44,28 @@ const repoDetailView = [
     },
     {
         type: "button",
-        props:{
+        props: {
             id: "like",
             bgcolor: resources.transparent,
-            icon: defaultLikeIcon
+            icon: resources.icons.defaultLike
         },
-        layout: function(make,view) {
+        layout: function (make, view) {
             make.top.equalTo(0)
             make.size.equalTo(resources.getSize(40))
             make.right.inset(0)
         },
         events: {
-            tapped: function(view){
+            tapped: function (view) {
                 let info = view.info
-                if(db.checkRepoExist(info.data.id)){
-                    db.deleteRepo(info.data.id)
-                    view.icon = defaultLikeIcon
+                if (data.checkRepoExist(info.data.id)) {
+                    data.deleteRepo(info.data.id)
+                    view.icon = resources.icons.defaultLike
                 } else {
-                    db.addRepo(view.info.data)
-                    view.icon = likedIcon
+                    data.addRepo(view.info.data)
+                    view.icon = resources.icons.liked
                 }
-            },
-            ready: function(sender) {
-               sender.icon = sender.info.isLiked ? likedIcon : defaultLikeIcon
             }
-        }
+        },
     },
     {
         type: "label",
@@ -205,20 +199,20 @@ const repoList = {
         rowHeight: 100,
         template: {
             type: "view",
-            props:{
+            props: {
                 bgcolor: resources.transparent,
             },
-            views:[
+            views: [
                 {
-                    type:"view",
-                    props:{
-                        id:"itemTemplate",
+                    type: "view",
+                    props: {
+                        id: "itemTemplate",
                         bgcolor: resources.white,
                         circular: true,
-                        smoothRadius:3,
+                        smoothRadius: 3,
                         shadowColor: resources.orange,
                     },
-                    layout:function(make,view){
+                    layout: function (make, view) {
                         make.height.equalTo(90)
                         make.left.right.insets(10)
                     },
@@ -227,21 +221,21 @@ const repoList = {
             ],
         }
     },
-    layout: function(make,view){
+    layout: function (make, view) {
         make.top.equalTo($('menu').bottom)
         make.right.left.inset(0)
         make.bottom.equalTo($('navMenu').top)
     },
     events: {
         didSelect: repolistClicked,
-        didLongPress: function(sender, indexPath, data) {
+        didLongPress: function (sender, indexPath, data) {
             var data = sender.object(indexPath)
             $share.sheet([data.url])
         }
     }
 }
 
-function repolistClicked(sender, indexPath,data) {
+function repolistClicked(sender, indexPath, data) {
     resources.openUrl(data.name.text, data.url)
 }
 
