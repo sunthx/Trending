@@ -12,7 +12,7 @@
 ## Todo 
 
 - [ ] Topic
-- [ ] Favorite
+- [x] Favorite
 - [ ] Setting
 
 ## ScreenShot
