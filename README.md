@@ -17,6 +17,6 @@
 
 ## ScreenShot
 
-<img src="http://q659q2a7i.bkt.clouddn.com/1.PNG" width="250"/>
-<img src="http://q659q2a7i.bkt.clouddn.com/2.PNG" width="250"/>
-<img src="http://q659q2a7i.bkt.clouddn.com/3.PNG" width="250"/>
+<img src="http://q659q2a7i.bkt.clouddn.com/2.0.6/1.PNG" width="250"/>
+<img src="http://q659q2a7i.bkt.clouddn.com/2.0.6/2.PNG" width="250"/>
+<img src="http://q659q2a7i.bkt.clouddn.com/2.0.6/3.PNG" width="250"/>
