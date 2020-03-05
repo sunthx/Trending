@@ -1,4 +1,5 @@
 const resources = require('./resources')
+const repoList = require('./repo-list')
 const conditionButtonSize = $size(80,25)
 const spokenLangs = resources.getSpokenLangs() 
 const programLangs = resources.getProgramLangs()
@@ -84,7 +85,7 @@ function sinceMenuSelected(title,idx){
     var sinceButton = $("sinceButton")
     sinceButton.title = title
     $cache.set(cacheKeys.sinceCacheKey, title == $l10n("DEFAULT_CONDITION") ? $l10n("DAILY") : title)
-    loadTrendingData()
+    repoList.loadRepoList()
 }
 
 function spokenLangButtonClicked(){
@@ -103,7 +104,7 @@ function spokenLangButtonClicked(){
             spokenButton.title = title
 
             $cache.set(cacheKeys.spokenCacheKey,title == $l10n("DEFAULT_CONDITION") ? "" : spokenLangs.get(title));
-            loadTrendingData()
+            repoList.loadRepoList()
         }
     });
 }
@@ -123,7 +124,7 @@ function programLangButtonClicked(){
             var langButton = $("langButton")
             langButton.title = title
             $cache.set(cacheKeys.programLanguageCacheKey, title == $l10n("DEFAULT_CONDITION") ? "": title);
-            loadTrendingData()
+            repoList.loadRepoList()
         }
     });
 }

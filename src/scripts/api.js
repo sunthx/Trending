@@ -68,33 +68,6 @@ exports.getContributionData = async (userName) => {
     return contributions
 }
 
-function developerTrendDataParser(item) {
-    return {
-        index: {
-            text: item.index
-        },
-        userName: {
-            text: item.user.name
-        },
-        nickName: {
-            text: item.user.nick_name
-        },
-        homePage: item.user.website,
-        avatar: {
-            src: item.user.avatar
-        },
-        repo_name: {
-            text: item.popular_repository.name
-        },
-        url: {
-            text: item.popular_repository.url
-        },
-        description: {
-            text: item.popular_repository.description
-        }
-    }
-}
-
 function getRequestPath(since, spoken, programLang) {
     var query = "";
     var containsPathValue = false

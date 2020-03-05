@@ -1,6 +1,12 @@
 const resources = require('./resources')
 const data = require('./data')
+const api = require("./api")
+const langColors = resources.getLangColors()
+const crypto = require('crypto-js')
+const cacheKeys = resources.cacheKey
 const iconSize = resources.getSize(10)
+var dataSource = []
+var showingTrending = true
 
 const repoDetailView = [
     {
@@ -58,24 +64,7 @@ const repoDetailView = [
             make.right.inset(0)
         },
         events: {
-            tapped: function (view) {
-                let info = view.info
-                if (data.checkRepoExist(info.data.id)) {
-                    data.deleteRepo(info.data.id)
-                    view.icon = resources.icons.defaultLike
-                } else {
-                    data.addRepo(view.info.data)
-                    view.icon = resources.icons.liked
-                }
-
-                data.repoListData[info.index].like.icon = view.icon
-
-                let list = $('list')
-                let repoList = list.contentOffset.y
-                list.data = []
-                list.data = data.repoListData
-                list.contentOffset = $point(0, repoList)
-            }
+            tapped: LikeButtonClicked
         },
     },
     {
@@ -126,7 +115,10 @@ const repoDetailView = [
             make.left.equalTo(cl.right).offset(2)
             make.top.equalTo(cl.top).offset(-2)
         }
-    },
+    }
+]
+
+const countView = [
     {
         type: "image",
         props: {
@@ -197,8 +189,18 @@ const repoDetailView = [
             make.left.equalTo($('imgToday').right).offset(3)
             make.top.equalTo($('lang').top)
         }
-    },
+    }
 ]
+
+function getDetailView(showAll) {
+    if(showAll) {
+        countView.forEach(function(item){
+            repoDetailView.push(item)
+        })
+    }
+
+    return repoDetailView
+}
 
 const repoList = {
     type: "list",
@@ -227,7 +229,7 @@ const repoList = {
                         make.height.equalTo(90)
                         make.left.right.insets(10)
                     },
-                    views: repoDetailView
+                    views: getDetailView(true) 
                 }
             ],
         }
@@ -247,10 +249,149 @@ const repoList = {
 }
 
 function repolistClicked(sender, indexPath, data) {
-    resources.openUrl(data.name.text, data.url)
+    let title = data.name.text
+    let url = data.url
+    $ui.push({
+        props:{
+            title: title,
+            navBarHidden: true,
+            statusBarStyle: 0
+        },
+        views: [
+            {
+                type:"view",
+                props:{
+                    id:"nav",
+                    bgcolor: resources.white
+                },
+                layout: function(make){
+                    make.top.left.right.insets(0)
+                    make.height.equalTo(30)
+                }
+            },
+            {
+            type: "web",
+            props: {
+                title: title,
+                text: title,
+                url: url
+            },
+            layout: function(make) {
+                let nav = $('nav')
+                make.top.equalTo(nav.bottom)
+                make.left.right.bottom.inset(0)
+            }
+        }]
+    })
 }
 
-exports.repoList = repoList
+function genRepoItemView(item,index) {
+    var array = item.name.split('/')
+    var repo = {
+        name: { text: array[2] },
+        author: { text: "@" + array[1] },
+        lang: { text: item.lang },
+        description: { text: item.description.replace(/<g-emoji [\s\S]*?>|<\/g-emoji>|<a[\s\S]*?>|<\/a>/g, "") },
+        star: { text: item.star },
+        fork: { text: item.fork },
+        langColor: { bgcolor: null },
+        url: item.url,
+        avatar: { src: resources.formatAvatarUrl(item.avatar, 120) },
+        today: { text: "+" + item.star_today },
+        like: { 
+            info: null,
+            icon: null
+        }
+    }
 
+    var langColor = langColors.get(item.lang)
+    var colorValue = "black"
+    if (langColor != null && langColor.color != null) {
+        colorValue = langColor.color
+    }
+
+    repo.langColor.bgcolor = $color(colorValue)
+
+    let id = repo.name.text.concat(repo.author.text)
+    repo.like.info = { 
+        index: index,
+        data: {
+            id: crypto.SHA256(id).toString(),
+            data: JSON.stringify(item),
+        }
+    } 
+
+    return repo
+}
+
+function genRepoItems(dataArray) {
+    $console.info(dataArray.length);
+
+    let res = []
+    let likeList = data.getRepo()
+    for (let index = 0; index < dataArray.length; index++) {
+      
+        let item = genRepoItemView(dataArray[index],index)
+        item.like.icon = likeList.has(item.like.info.data.id) ? resources.icons.liked : resources.icons.defaultLike
+        res.push(item)
+    }
+
+    return res;
+}
+
+async function loadTrendingData() {
+    let since = $cache.get(cacheKeys.sinceCacheKey)
+    let spoken = $cache.get(cacheKeys.spokenCacheKey)
+    let programLang = $cache.get(cacheKeys.programLanguageCacheKey)
+    let type = $cache.get(cacheKeys.dataTypeCacheKey);
+    let dataArray = await api.getTrendingData(since,spoken,programLang,type)
+    return genRepoItems(dataArray)
+}
+
+function LikeButtonClicked(view){
+    let info = view.info
+    if (data.checkRepoExist(info.data.id)) {
+        data.deleteRepo(info.data.id)
+        view.icon = resources.icons.defaultLike
+    } else {
+        data.addRepo(view.info.data)
+        view.icon = resources.icons.liked
+    }
+
+    dataSource[info.index].like.icon = view.icon
+
+    let list = $('list')
+    let repoList = list.contentOffset.y
+    list.data = []
+    list.data = dataSource 
+    list.contentOffset = $point(0, repoList)
+}
+
+async function loadRepoList() {
+    showingTrending = true
+    let list = $("list")
+    list.startLoading()
+    dataSource = await loadTrendingData()
+    list.stopLoading()
+    list.data = dataSource
+}
+
+function loadLikedList() {
+    showingTrending = false
+    let likeList = data.getRepo() 
+    let list = $('list')
+    let dataArray = []
+    for (let value of likeList.values()) {
+        dataArray.push(value.data)
+    }
+
+    dataSource = genRepoItems(dataArray)
+    list.data = dataSource
+}
+
+exports.repoListData = dataSource
+exports.view = repoList
+exports.loadRepoList = loadRepoList
+exports.loadLikedList = loadLikedList
 
 

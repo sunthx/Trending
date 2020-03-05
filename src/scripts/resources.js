@@ -1567,23 +1567,6 @@ exports.taptic = ()=>{
     $device.taptic(3)
 }
 
-exports.openUrl =(title, url) => {
-    $ui.push({
-        props: {
-            title: title
-        },
-        views: [{
-            type: "web",
-            props: {
-                title: title,
-                text: title,
-                url: url
-            },
-            layout: $layout.fill
-        }]
-    })
-}
-
 exports.formatAvatarUrl = (url,size) => {
     //https://avatars3.githubusercontent.com/u/10217485?s=460&amp;v=4",
     //https://avatars3.githubusercontent.com/u/10217485

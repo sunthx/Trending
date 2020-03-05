@@ -1,5 +1,7 @@
 const resources = require('./resources')
-const itemCount = 4
+const repoList = require('./repo-list')
+const menu = require('./menu')
+const itemCount = 2
 const itemWidth = $device.info.screen.width / itemCount
 const itemIconSize = 20
 const itemDefaultBgColor = resources.drakgray
@@ -44,7 +46,16 @@ function genNavItem(index,id,text,icon){
                     make.width.equalTo(view.super)
                 }
             }
-        ]
+        ],
+        events:{
+            tapped: async function(make) {
+                if(index == 0) {
+                    await repoList.loadRepoList()
+                } else {
+                    repoList.loadLikedList()
+                }
+            }
+        }
     }
 }
 
@@ -63,9 +74,7 @@ const navMenu =
     },
     views:[
         genNavItem(0,"navTrending","Trending","164"), 
-        genNavItem(1,"navTopic","Topic","048"), 
-        genNavItem(2,"navFavorite","Favorite","120"),
-        genNavItem(3,"navSetting","Setting","002")
+        genNavItem(1,"navFavorite","Favorite","120"),
     ]
 }
 
