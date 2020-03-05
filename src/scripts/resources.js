@@ -1505,6 +1505,7 @@ const programLangs = [
     "Lua"
 ];
 
+
 exports.black = $color('black')
 exports.white = $color('white')
 exports.orange = $color('#e36209')
@@ -1566,26 +1567,29 @@ exports.taptic = ()=>{
     $device.taptic(3)
 }
 
-exports.openUrl =(title, url) => {
-    $ui.push({
-        props: {
-            title: title
-        },
-        views: [{
-            type: "web",
-            props: {
-                title: title,
-                text: title,
-                url: url
-            },
-            layout: $layout.fill
-        }]
-    })
-}
-
 exports.formatAvatarUrl = (url,size) => {
     //https://avatars3.githubusercontent.com/u/10217485?s=460&amp;v=4",
     //https://avatars3.githubusercontent.com/u/10217485
     let index = url.lastIndexOf('?')
     return url.substring(0,index) + "?s=" +size
 }
+
+const cacheKey = {
+    dataTypeCacheKey : "type",
+    sinceCacheKey : "since",
+    spokenCacheKey : "spoken",
+    programLanguageCacheKey : "programLanguage",
+    defaultDataTypeValue : "repo",
+    defaultSinceValue : "Daily",
+    defaultSpokenValue : "",
+    defaultProgramLanguageValue : "",
+    repoLikeDataListCacheKey : "repo_like_list"
+}
+
+const icon = {
+    liked : $icon('120',$color('#e36209'),$size(20,20)),
+    defaultLike : $icon('120',$color('#d3d3d3'),$size(20,20))
+}
+
+exports.cacheKey = cacheKey
+exports.icons = icon
